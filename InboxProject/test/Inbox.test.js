@@ -42,7 +42,7 @@ describe('Inbox', () => {
         from: accounts[0],
         gas: '1000000'
       }
-    )
+    );
     const message = await inbox.methods.message().call();
     assert.equal(message, 'Bon appétit !');
   });
