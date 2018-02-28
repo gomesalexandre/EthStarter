@@ -40,7 +40,7 @@ describe('Lottery', () => {
       from: accounts[0]
     });
     assert.equal(accounts[1], players[0]);
-  })
+  });
   it('Multiple accounts can enter', async () => {
     await lottery.methods.enter().send({
       from: accounts[1],
@@ -55,5 +55,24 @@ describe('Lottery', () => {
     });
     assert.equal(accounts[1], players[0]);
     assert.equal(accounts[2], players[1]);
+  });
+  it('A minimum amount of .01 ether is required to enter the lottery', async () => {
+    try {
+      await lottery.methods.enter().send({
+        from: accounts[1],
+        value: web3.utils.toWei('0.01', 'ether')
+      });
+    } catch(e) {
+      assert(e);
+    }
+  });
+  it('Only manager should be able to call pickWinner()', () => {
+    try { 
+      await lottery.methods.pickWinner().send({
+        from: accounts[1]
+      });
+    } catch(e) {
+      assert(e);
+    }
   });
 });
