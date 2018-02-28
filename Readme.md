@@ -1,15 +1,17 @@
 # Solidity Learning
 
-Here you will find the three projects related to my solidity learning:
+Here you will find the three projects related to my Solidity lang learning:
 
-- Inbox, a simple smart contract that sets a message 
-- Lottery, which as the name suggests is a contract that manages a lottery : It will send 2 ethers to a random person amongst which will have sent some ethers to the contract.
+- **Inbox**, a simple smart contract that sets a message 
+- **Lottery**, which as the name suggests is a contract that manages a lottery : It will send 2 ethers to a random person amongst which will have sent some ethers to the contract.
 
 
 ## Requirements 
 
-- Node.JS > 8 (For async/await support)
-- Metamask browser plugin, set on Rinkeby testnet and with your mneumonic saved
+- Node.JS >= 8 (For async/await support)
+- A C++ compiler for the node modules (OSX users should make sure they have the xcode command-line tools installed)
+- Metamask browser plugin, set on Rinkeby testnet and with your mneumonic(seedphrase) saved
+- Some ETH on your Rinkeby testnet wallet (use a faucet)
 - An Infurio.io endpoint url (it takes 30 seconds to register and it is free)
 
 ## Configuration
@@ -21,10 +23,16 @@ Here you will find the three projects related to my solidity learning:
 
 
 ## Testing
-All of the projects are tested: 
-Simply run mocha test [NAMEOFPROJECT]
-
+- `cd` to a project folder 
+- `mocha --recursive test/unit` to run unit tests
+-  `mocha --recursive test/e2e` to run end-to-end tests
 ## Deployment
 
-To deploy a project : 
-cd to the project folder, then run `node deploy`
+- `cd` to a project folder
+- `node deploy`
+
+## Enjoy !
+
+To interact with a smart contract after successful deployment : 
+
+- Go to Remix IDE, then, under "Run" you will see a "Load contract from address" option, paste the deployed contract address there and click "At Address"

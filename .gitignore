@@ -1,5 +1,3 @@
-
-
-InboxProject/node_modules
-InboxProject/config.js
+node_modules/
+config.js
 .vscode/

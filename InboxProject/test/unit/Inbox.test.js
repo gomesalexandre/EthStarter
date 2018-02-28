@@ -4,7 +4,7 @@ const provider = ganache.provider();
 const Web3 = require('web3');
 const web3 = new Web3(provider);
 
-const { interface, bytecode } = require('../compile');
+const { interface, bytecode } = require('../../compile');
 
 const defaultMessage = "Hey there";
 
