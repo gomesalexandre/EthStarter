@@ -1,4 +1,17 @@
 pragma solidity ^0.4.0;
+contract CampaignFactory {
+    address[] public deployedCampaigns;
+    function deployCampaign(uint minimum) public
+    {
+        address newCampaign = new Campaign(minimum, msg.sender);
+        deployedCampaigns.push(newCampaign);
+    }
+    function getDeployedCampaigns() public view returns(address[])
+    // getters on arrays just get one campaign, we want all of them
+    {
+        return deployedCampaigns;
+    }
+}
 contract Campaign {
     struct Request { // Type def, i.e needs to be instanciated !
         string description;
@@ -20,9 +33,9 @@ contract Campaign {
         _;
     }
 
-    function Campaign(uint minimum) public
+    function Campaign(uint minimum, address creator) public
     {
-        manager = msg.sender;
+        manager = creator;
         minimumContribution = minimum;
     }
     function contribute() public payable
