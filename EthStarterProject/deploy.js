@@ -1,7 +1,7 @@
 const WalletProvider = require('truffle-hdwallet-provider');
 const Web3 = require('web3');
 const compiledFactory = require('./build/CampaignFactory.json');
-const config = require('./config'); // Mneumonics are safe in a gitignored config file üî•
+const config = require('./config'); // Mneumonics are safe in a gitignored config file
 
 const provider = new WalletProvider(config.mneumo, config.endpoint);
 const web3 = new Web3(provider);
