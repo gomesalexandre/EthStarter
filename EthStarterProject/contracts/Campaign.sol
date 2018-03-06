@@ -43,12 +43,11 @@ contract Campaign {
         require(msg.value > minimumContribution);
 
         approvers[msg.sender] = true;
-        approversCount++;
     }
     function createRequest(string description, uint value, address recipient)
         public restricted
     {
-        require(approvers[msg.sender]);
+        require(msg.sender == manager);
         Request memory newRequest = Request({
             description: description,
             value: value,
@@ -59,7 +58,7 @@ contract Campaign {
 
         requests.push(newRequest);
     }
-    function approveRequest(uint index) public payable
+    function approveRequest(uint index) public
     {
         Request storage thisRequest = requests[index]; // Assigning the request to a local var, more efficient, less gas used !
 
@@ -68,8 +67,9 @@ contract Campaign {
 
         thisRequest.approvals[msg.sender] = true;
         thisRequest.approvalsCount++;
+        approversCount++;
     }
-    function finalizeRequest(uint index) public payable
+    function finalizeRequest(uint index) public restricted
     {
         Request storage thisRequest = requests[index];
 
@@ -77,6 +77,6 @@ contract Campaign {
         require(!thisRequest.complete); // Let's not finalize the request if it's already finalized !
 
         thisRequest.recipient.transfer(thisRequest.value);
-        thisRequest.complete = true;
+        // thisRequest.complete = true;
     }
 }

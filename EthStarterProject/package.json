@@ -1,0 +1,18 @@
+{
+  "name": "ethstarterproject",
+  "version": "1.0.0",
+  "description": "This is a a decentralized KickStarter-like project. It will allow people with project ideas to create campaigns, and contributors to fund the projects. The difference between it and your classic crowdfunding platform is that the funds will be stored in a smart contract :  They will only be released to the supplier after a request has been made by the product owner, and more than 50% of backers have agreed to that expense. No more wild cashing out of funds !",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^5.0.0",
+    "ganache-cli": "^6.0.3",
+    "mocha": "^5.0.2",
+    "solc": "^0.4.20",
+    "web3": "^1.0.0-beta.26"
+  }
+}
