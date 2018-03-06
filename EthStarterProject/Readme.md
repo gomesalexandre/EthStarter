@@ -9,10 +9,12 @@ They will only be released to the supplier after a request has been made by the 
 Test the smart contract the same way you would test it (refer to the root of this _SolidityLearning_ repo for that).
 However, there is a subtle difference here ! You won't directly use the Campaign contract. Instead : 
 
-- Deploy CampaignFactory using `node deploy`. 
-- Load it in Remix from address. 
-- Call the "deployCampaign" method, with the minimum amount of Wei required for said campaign. 
-- Call the "getDeployedCampaigns" method, copy the address, and load the Campaign from address. 
+- Make sure config.example.js is renamed to config.js and replaced with your mneumomic + endpoint URL
+- Compile the factory using `node compile`
+- Deploy CampaignFactory using `node deploy`.
+- Load it in Remix from address
+- Call the "deployCampaign" method, with the minimum amount of Wei required for said campaign
+- Call the "getDeployedCampaigns" method, copy the address, and load the Campaign from address
 - Voilà ! Magic happens, CampaignFactory contract has deployed a Campaign contract
 
 **Why is there a "Campaign Factory" ?**
@@ -21,3 +23,10 @@ We want to be able to run multiple campaigns concurrently, and also for users to
 
 This way, our _CampaignFactory_ contract will actually be responsible for creating _Campaign_ contracts. 
 It will make us able to keep track of all the 
+
+# Test 
+
+In the same fashion as for other projects, e2e/unit tests are included :
+
+- To run the end-to-end tests, cd into the project folder and run `mocha --recursive test/e2e`
+- To run the unit tests, cd into the project folder and run `mocha --recursive test/unit`
