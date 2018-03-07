@@ -10,9 +10,10 @@ Test the smart contract the same way you would test it (refer to the root of thi
 However, there is a subtle difference here ! You won't directly use the Campaign contract. Instead : 
 
 - Make sure config.example.js is renamed to config.js and replaced with your mneumomic + endpoint URL
+- Unlock your Metamask, and set it on Rinkeby testnet
 - Compile the factory using `node compile`
 - Deploy CampaignFactory using `node deploy`.
-- Load it in Remix from address
+- Load it in Remix from address (make sure to select "Injected Web3" as provider)
 - Call the "deployCampaign" method, with the minimum amount of Wei required for said campaign
 - Call the "getDeployedCampaigns" method, copy the address, and load the Campaign from address
 - Voilà ! Magic happens, CampaignFactory contract has deployed a Campaign contract
