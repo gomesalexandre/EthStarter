@@ -19,7 +19,7 @@ However, there is a subtle difference here ! You won't directly use the Campaign
 We want to be able to run multiple campaigns concurrently, and also for users to pay for deployment, not us. 
 
 This way, our _CampaignFactory_ contract will actually be responsible for creating _Campaign_ contracts. 
-It will make us able to keep track of all the 
+It will make us able to keep track of all the currently running campaigns
 
 # Test 
 
