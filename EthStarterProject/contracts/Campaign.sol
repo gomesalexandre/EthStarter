@@ -44,6 +44,8 @@ contract Campaign {
         require(msg.value > minimumContribution);
 
         approvers[msg.sender] = true;
+        approversCount = approversCount + 1;
+
     }
     function createRequest(string description, uint value, address recipient)
         public restricted
@@ -68,13 +70,12 @@ contract Campaign {
 
         thisRequest.approvals[msg.sender] = true;
         thisRequest.approvalsCount++;
-        approversCount++;
     }
     function finalizeRequest(uint index) public restricted
     {
         Request storage thisRequest = requests[index];
 
-        require(thisRequest.approvalsCount >= approversCount / 2);
+        require(thisRequest.approvalsCount >= (approversCount / 2));
         require(!thisRequest.complete);
 
         thisRequest.recipient.transfer(thisRequest.value);
