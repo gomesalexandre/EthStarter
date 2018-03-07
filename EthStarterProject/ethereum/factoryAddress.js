@@ -1,0 +1,1 @@
+module.exports = {"address":"0x92C7Ef1df5a3e6A90A82Ae39D2E2693E479eabe2"}
