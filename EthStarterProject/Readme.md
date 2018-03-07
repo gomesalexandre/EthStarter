@@ -9,14 +9,10 @@ They will only be released to the supplier after a request has been made by the 
 Test the smart contract the same way you would test it (refer to the root of this _SolidityLearning_ repo for that).
 However, there is a subtle difference here ! You won't directly use the Campaign contract. Instead : 
 
-- Make sure config.example.js is renamed to config.js and replaced with your mneumomic + endpoint URL
-- Unlock your Metamask, and set it on Rinkeby testnet
-- Compile the factory using `node compile`
-- Deploy CampaignFactory using `node deploy`.
-- Load it in Remix from address (make sure to select "Injected Web3" as provider)
+- Copy and paste the content from 'Campaign.sol' in Remix and click on 'Create' to deploy it (make sure to select "Injected Web3" as provider)
 - Call the "deployCampaign" method, with the minimum amount of Wei required for said campaign
 - Call the "getDeployedCampaigns" method, copy the address, and load the Campaign from address
-- Voilà ! Magic happens, CampaignFactory contract has deployed a Campaign contract
+- Voilà ! Magic happens, CampaignFactory contract has deployed a Campaign contract, that you can now use
 
 **Why is there a "Campaign Factory" ?**
 
