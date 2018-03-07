@@ -6,14 +6,15 @@ contract CampaignFactory {
         address newCampaign = new Campaign(minimum, msg.sender);
         deployedCampaigns.push(newCampaign);
     }
+    // getters on arrays just get one campaign, we want all of them, thus the getter function
     function getDeployedCampaigns() public view returns(address[])
-    // getters on arrays just get one campaign, we want all of them
     {
         return deployedCampaigns;
     }
 }
 contract Campaign {
-    struct Request { // Type def, i.e needs to be instanciated !
+    // Struc def is a type def, i.e still needs to be instanciated !
+    struct Request {
         string description;
         uint value;
         address recipient;
@@ -60,7 +61,7 @@ contract Campaign {
     }
     function approveRequest(uint index) public
     {
-        Request storage thisRequest = requests[index]; // Assigning the request to a local var, more efficient, less gas used !
+        Request storage thisRequest = requests[index];
 
         require(approvers[msg.sender]);
         require(!thisRequest.approvals[msg.sender]);
@@ -74,9 +75,9 @@ contract Campaign {
         Request storage thisRequest = requests[index];
 
         require(thisRequest.approvalsCount > approversCount / 2);
-        require(!thisRequest.complete); // Let's not finalize the request if it's already finalized !
+        require(!thisRequest.complete);
 
         thisRequest.recipient.transfer(thisRequest.value);
-        // thisRequest.complete = true;
+        thisRequest.complete = true;
     }
 }
