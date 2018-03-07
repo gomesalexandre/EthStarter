@@ -21,9 +21,39 @@ We want to be able to run multiple campaigns concurrently, and also for users to
 This way, our _CampaignFactory_ contract will actually be responsible for creating _Campaign_ contracts. 
 It will make us able to keep track of all the currently running campaigns
 
+# Methods 
+
+- **deployCampaign(uint mimimum)**
+
+Deploys one campaign from a factory, takes the mimimum contribution amount of campaign as arg
+
+- **createRequest(string description, uint value, address recipient)**
+
+Creates one request. Takes the request info as argument. 
+_msg.sender needs to be the campaign manager_
+
+- **contribute() payable**
+
+Contribute to the campaign. Payable, wei needs to be greater than the minimum contribution for this campaign.
+
+- **approveRequest(uint index)**
+
+Approves one request, takes request index as argument. 
+_msg.sender needs to be an approver, i.e has contributed_
+
+- **finalizeRequest(uint index)**
+
+Finalizes one request, takes request index as argument. 
+A minimum of 50% of approvals is required or the method will throw
+_msg.sender needs to be the campaign manager_ 
+
+
+
+
+- ****
 # Test 
 
 In the same fashion as for other projects, e2e/unit tests are included :
 
-- To run the end-to-end tests, cd into the project folder and run `mocha --recursive test/e2e`
-- To run the unit tests, cd into the project folder and run `mocha --recursive test/unit`
+- To run the end-to-end tests, cd into the project folder and run `mocha --recursive ethereum/test/e2e`
+- To run the unit tests, cd into the project folder and run `mocha --recursive ethereum/test/unit`
