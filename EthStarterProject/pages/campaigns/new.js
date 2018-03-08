@@ -1,6 +1,6 @@
 import React from 'react';
 import PageLayout from '../../components/Layout';
-import { Form, Input, Button, Card } from 'antd';
+import { Form, Input, Button, Card, Spin, Icon, notification } from 'antd';
 import uuid from 'uuid/v1';
 
 import factory from '../../ethereum/factory';
@@ -8,21 +8,30 @@ import web3 from '../../ethereum/web3';
 class NewCampaign extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { newCampaigns: {} }
+    this.state = { newCampaigns: {}, loading: false }
   }
   handleSubmit = async e => {
     e.preventDefault();
-    const campaignId = uuid();
-    const accounts = await web3.eth.getAccounts();
+    this.setState({loading: true});
 
-    this.state.newCampaigns[campaignId] = {loading: true};
-
-    console.log('New campaigns obj was first ', this.state.newCampaigns);
-
-    const newCampaign = await factory.methods.deployCampaign('100').send({from: accounts[0]});
-
-    console.log('New campaigns obj is', this.state.newCampaigns);
-    this.state.newCampaigns[campaignId] = newCampaign;
+    try {
+      const campaignId = uuid();
+      const accounts = await web3.eth.getAccounts();
+      const newCampaign = await factory.methods.deployCampaign('100').send({from: accounts[0]});
+      notification.success({
+        message: 'New campaign created',
+        description: 'You are in the future',
+      });
+      this.state.newCampaigns[campaignId] = newCampaign;
+      console.log(newCampaigns);
+    } catch(err) {
+      notification.success({
+        message: err.message,
+        description: 'You are in the future but the tx failed, sorry :(',
+      })
+    } finally {
+      this.setState({loading: false});
+    }
   }
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -35,13 +44,15 @@ class NewCampaign extends React.Component {
               })(<Input />)
             }
           </Form.Item>
-          <Button type="primary" htmlType="submit">Submit</Button>
+          <Button type="primary" htmlType="submit">
+          {this.state.loading ? <Icon type="loading" /> : 'Submit'}
+          </Button>
         </Form>
-        { Object.keys(this.state.newCampaigns).map(key =>
-          <Card title={this.state.newCampaigns[key].loading ? "Loading" : this.state.newCampaigns[key]}>
+        {/* { Object.keys(this.state.newCampaigns).map(key =>
+          <Card title={this.state.newCampaigns[key]}>
 
           </Card>
-        )}
+        )} */}
         </div>
     );
   }
