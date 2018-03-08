@@ -26,7 +26,7 @@ class CampaignsIndex extends React.Component {
   render() {
     return(
       <PageLayout>
-        <h1 style={{"text-align" : "center"}}>Opened campaigns</h1>
+        <h1 style={{"textAlign" : "center"}}>Opened campaigns</h1>
         <Row type="flex" justify="center">
           {this.props.campaigns.map( campaign => this.campaignCard(campaign))}
         </Row>

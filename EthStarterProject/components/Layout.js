@@ -1,9 +1,14 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux'
+import { Layout, Menu, Breadcrumb, Icon, Card, Row, Col, Button } from 'antd';
 import stylesheet from 'antd/dist/antd.min.css';
 
+import appReducer from '../reducers/appReducer';
 import Header from './Header';
-import { Layout, Menu, Breadcrumb, Icon, Card, Row, Col, Button } from 'antd';
+
 const { Content } = Layout;
+let store = createStore(appReducer);
 
 
 class PageLayout extends React.Component {
@@ -23,12 +28,20 @@ class PageLayout extends React.Component {
           }
         `}
         </style>
-        <Header/>
-        <Content>
-          {this.props.children}
-        </Content>
+          <Header/>
+          <Content>
+            {this.props.children}
+          </Content>
       </Layout>
   )
 }}
-
-export default PageLayout;
+class LayoutWithProvider extends React.Component {
+  render() {
+    return(
+      <Provider store={store}>
+        <PageLayout children={this.props.children}/>
+      </Provider>
+    );
+  }
+}
+export default LayoutWithProvider;
