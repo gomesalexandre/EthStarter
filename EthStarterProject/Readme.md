@@ -8,14 +8,15 @@ They will only be released to the supplier after a request has been made by the 
 
 ## Requirements 
 
-- Metamask installed and set on Rinkeby testnet with some Eth in your address
+- Metamask installed and set on Rinkeby testnet with some Eth in your address :
+Mneumonic is needed for deployment as we're doing it through the console, but the front-end will use metamask as provider !
 - Node.js >= 7.6
 - Rename `config.example.js` to `config.js` with an Infurio Rinkeby endpoint URL, and your metamask mneumonic(seed)
 
 ## Frontend
 
-- Run `node compile` to compile both the campaign and campaign factory
-- Run `node deploy` to deploy an instance of the factory to Rinkeby
+- Run `node ethereum/compile` to compile both the campaign and campaign factory
+- Run `node ethereum/deploy` to deploy an instance of the factory to Rinkeby
 - Run either `yarn dev` or `npm run dev` and voilà !
 
 ## Using the smart contract on Remix 
