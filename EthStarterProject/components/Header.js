@@ -14,10 +14,10 @@ export default (props) => (
     mode="horizontal"
     >
       <Menu.Item key="new">
-        <Icon type="file-add" />New Campaign
+       <a href="/campaign/new"><Icon type="file-add" />New Campaign</a>
       </Menu.Item>
       <Menu.Item key="campaigns">
-        <Icon type="appstore" />Campaigns
+        <a href="/" ><Icon type="appstore" />Campaigns</a>
       </Menu.Item>
     </Menu>
   </div>
