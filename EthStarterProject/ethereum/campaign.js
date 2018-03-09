@@ -1,9 +1,9 @@
 import web3 from './web3';
-import campaign from './build/Campaign.json';
+import campaignBuild from './build/Campaign.json';
 
-const campaignInstance = address => {return new web3.eth.Contract(
-  JSON.parse(campaign.interface),
+const CampaignInstance = address => {return new web3.eth.Contract(
+  JSON.parse(campaignBuild.interface),
   address
 )};
 
-export default campaignInstance;
+export default CampaignInstance;

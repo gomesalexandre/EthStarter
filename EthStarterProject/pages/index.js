@@ -4,13 +4,11 @@ import { connect } from 'react-redux';
 import { Layout, Menu, Breadcrumb, Icon, Card, Row, Col, Button, Tag, List } from 'antd';
 
 import factory from '../ethereum/factory';
-import campaign from '../ethereum/campaign';
 import PageLayout from '../components/Layout';
 
 const { Header, Content } = Layout;
 
 const campaignCard = (address, key) => {
-  const campaignInstance = campaign(address);
   return(
     <Col key={key}>
       <Card

@@ -22,10 +22,11 @@ class NewCampaign extends React.Component {
       const campaignId = uuid();
       const accounts = await web3.eth.getAccounts();
       const newCampaign = await factory.methods.deployCampaign(this.state.minWei).send({from: accounts[0]});
+      console.log('NEw campaign is', newCampaign);
       notification.success({
         message: 'New campaign created',
-        description: `tx: ${newCampaign}`,
-        icon: <Icon type="info" style={{ color: '#108ee9' }} />,
+        description: `tx : ${newCampaign.transactionHash}`,
+        icon: <Icon type="check" style={{ color: '#4CAF50' }} />,
       });
       this.state.newCampaigns[campaignId] = newCampaign;
     } catch(err) {
