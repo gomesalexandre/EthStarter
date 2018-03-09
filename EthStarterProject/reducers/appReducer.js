@@ -1,1 +1,1 @@
-export default state => state;
+export default (previousState, action) => previousState; // Reducer that does nothing
