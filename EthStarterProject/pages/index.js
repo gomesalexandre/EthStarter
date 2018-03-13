@@ -18,7 +18,7 @@ const campaignCard = (address, key) => {
             More
           </Link>}
         style={{ width: "500px" }}>
-        <p><a href={`https://rinkeby.etherscan.io/tx/${address}`}>View on EtherScan</a></p>
+        <p><a href={`https://rinkeby.etherscan.io/address/${address}`}>View on EtherScan</a></p>
       </Card>
     </Col>);
 };
