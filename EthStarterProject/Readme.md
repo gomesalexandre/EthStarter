@@ -1,5 +1,5 @@
 # EthStarter
-_Built with Next.js, web3, Ant Design, Express, Solidity, Truffle_
+_Built with Next.js, web3, Ant Design, Express, Solidity, Truffle and tested with Mocha + node's native assert() module_
 
 Decentralized KickStarter-like project. It allows people with project ideas to create campaigns, and for contributors to fund the projects. The difference between it and your classic crowdfunding platform is that the funds will be stored in a smart contract : 
 They will only be released to the supplier after a request has been made by the product owner, and more than 50% of backers have agreed to that expense. No more wild cashing out of funds !
