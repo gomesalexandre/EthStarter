@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link'
-import { connect } from 'react-redux';
 import { Layout, Menu, Breadcrumb, Icon, Card, Row, Col, Button, Tag, List } from 'antd';
 
 import factory from '../ethereum/factory';
