@@ -1,6 +1,6 @@
 import React from 'react';
 import { nextConnect, } from '../store/initStore';
-import { Layout, Menu, Breadcrumb, Icon, Card, Row, Col, Button, Tag, List, } from 'antd';
+import { Layout, Breadcrumb, Card, Row, Col, Button, Tag, List, Spin, } from 'antd';
 
 import { getCampaigns, } from '../actions/addFetchedCampaigns';
 
@@ -13,6 +13,7 @@ const { Header, Content, } = Layout;
 
 class CampaignsIndex extends React.Component {
   async componentDidMount() {
+    // TODO: Error handling on unsuccessful campaigns fetch
     await this.props.dispatch(getCampaigns());
   }
 
@@ -21,7 +22,7 @@ class CampaignsIndex extends React.Component {
       <PageLayout selected="campaigns">
         <h1 style={{"textAlign" : "center",}}>Opened campaigns</h1>
         <Row type="flex" justify="center">
-          {this.props.campaigns ? this.props.campaigns.map( (campaignAddress, i) => CampaignCard(campaignAddress, i)) : ''}
+          {this.props.campaigns ? this.props.campaigns.map( (campaignAddress, i) => CampaignCard(campaignAddress, i)) : <Spin size="large" />}
         </Row>
         <Row type="flex" justify="left">
           <Button type="primary">Create a campaign</Button>
