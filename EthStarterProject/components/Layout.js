@@ -1,6 +1,5 @@
 import React from 'react';
 import stylesheet from 'antd/dist/antd.min.css';
-
 import Header from './Header';
 import { Layout, Menu, Breadcrumb, Icon, Card, Row, Col, Button, } from 'antd';
 const { Content, Footer, } = Layout;

@@ -53,11 +53,6 @@ class NewCampaign extends React.Component {
           {this.state.loading ? <Icon type="loading" /> : 'Submit'}
           </Button>
         </Form>
-        {/* { Object.keys(this.state.newCampaigns).map(key =>
-          <Card title={this.state.newCampaigns[key]}>
-
-          </Card>
-        )} */}
         </div>
     );
   }

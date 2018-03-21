@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Breadcrumb, Tag, Row, Col, Button, Modal, Layout, Menu, Form, Input, InputNumber, List, Icon, notification, } from 'antd';
+import { nextConnect, } from '../../store/initStore';
 import web3 from '../../ethereum/web3';
 import CampaignInstance from '../../ethereum/campaign';
 import PageLayout from '../../components/Layout';
@@ -173,4 +174,4 @@ class Campaign extends React.Component {
     );}
 }
 const ParsedCampaign = Form.create({})(Campaign);
-export default ParsedCampaign;
+export default nextConnect(state => state)(ParsedCampaign);
