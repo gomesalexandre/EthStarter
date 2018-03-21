@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { Layout, Menu, Icon } from 'antd';
-const { Header } = Layout;
+import { Layout, Menu, Icon, } from 'antd';
+const { Header, } = Layout;
 
 export default (props) => (
   <div>
     <Header>
-      <h1 style={{"color": "white"}}>EthStarter</h1>
+      <h1 style={{"color": "white",}}>EthStarter</h1>
     </Header>
     <Menu
     // onClick={this.handleClick}
-    selectedKeys={[props.selected]}
+    selectedKeys={[props.selected,]}
     mode="horizontal"
     >
       <Menu.Item key="new">

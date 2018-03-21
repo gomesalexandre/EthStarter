@@ -1,8 +1,8 @@
 const express = require('express');
-const { parse } = require('url');
+const { parse, } = require('url');
 const next = require('next');
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
+const app = next({ dev, });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
@@ -10,7 +10,7 @@ app.prepare().then(() => {
   // CUSTOM ROUTES GO HERE
   server.get('/campaign/new', (req, res) => {
     return app.render(req, res, '/campaign/new');
-  })
+  });
   server.get('/campaign/:address', (req, res) => {
     const mergedQuery = Object.assign({}, req.query, req.params);
     return app.render(req, res, '/campaign/campaign', mergedQuery);
