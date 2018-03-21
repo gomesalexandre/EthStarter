@@ -12,12 +12,12 @@ They will only be released to the supplier after a request has been made by the 
 Mneumonic is needed for the deployment of the contract, so keep it ! 
 - An Infura endpoint URL (https://infura.io/)
 - Node.js >= 7.6 for the async/await magic
-- Rename `config.example.js` to `config.js` with an Infurio Rinkeby endpoint URL, and your metamask mneumonic(seed)
+- Rename `config.example.js` to `config.js` with an Infura Rinkeby endpoint URL, and your metamask mneumonic(seedphrase)
 
 ## Frontend
 
-- Run `yarn compile` to compile both the campaign and campaign factory
-- Run `yarn deploy` to deploy an instance of the factory to Rinkeby
+- Run either `yarn compile` or `npm run compile`to compile both the campaign and campaign factory
+- Run either `yarn deploy` or `npm run deploy` or to deploy an instance of the factory to Rinkeby
 - Run either `yarn dev` or `npm run dev` and voilà !
 
 ## Contract Testing
