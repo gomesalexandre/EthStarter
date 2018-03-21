@@ -6,20 +6,28 @@ They will only be released to the supplier after a request has been made by the 
 
 
 
-## Requirements 
+## Requirements / Getting started 
 
-- Metamask installed and set on Rinkeby testnet with some Eth in your address :
-Mneumonic is needed for deployment as we're doing it through the console, but the front-end will use metamask as provider !
-- Node.js >= 7.6
+- Metamask installed and set on Rinkeby testnet with some Eth in your address (https://faucet.rinkeby.io/ will provide you with some) :
+Mneumonic is needed for the deployment of the contract, so keep it ! 
+- An Infura endpoint URL (https://infura.io/)
+- Node.js >= 7.6 for the async/await magic
 - Rename `config.example.js` to `config.js` with an Infurio Rinkeby endpoint URL, and your metamask mneumonic(seed)
 
 ## Frontend
 
-- Run `node ethereum/compile` to compile both the campaign and campaign factory
-- Run `node ethereum/deploy` to deploy an instance of the factory to Rinkeby
+- Run `yarn compile` to compile both the campaign and campaign factory
+- Run `yarn deploy` to deploy an instance of the factory to Rinkeby
 - Run either `yarn dev` or `npm run dev` and voilà !
 
-## Using the smart contract on Remix 
+## Contract Testing
+
+e2e/unit tests are included :
+
+- To run the end-to-end tests, cd into the project folder and run `mocha --recursive ethereum/test/e2e`
+- To run the unit tests, cd into the project folder and run `mocha --recursive ethereum/test/unit`
+
+## Using the smart contract on Remix (Advanced)
 
 Test the smart contract the same way you would test it (refer to the root of this _SolidityLearning_ repo for that).
 However, there is a subtle difference here ! You won't directly use the Campaign contract. Instead : 
@@ -62,9 +70,3 @@ Finalizes one request, takes request index as argument.
 A minimum of 50% of approvals is required or the method will throw
 _msg.sender needs to be the campaign manager_ 
 
-## Contract Testing
-
-In the same fashion as for other projects, e2e/unit tests are included :
-
-- To run the end-to-end tests, cd into the project folder and run `mocha --recursive ethereum/test/e2e`
-- To run the unit tests, cd into the project folder and run `mocha --recursive ethereum/test/unit`
