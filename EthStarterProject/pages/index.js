@@ -5,7 +5,7 @@ import web3 from '../ethereum/web3';
 import factory from '../ethereum/factory';
 import PageLayout from '../components/Layout';
 
-import CampaignCard from '../components/CampaignCard';
+import CampaignCard from '../decorators/CampaignCard';
 const { Header, Content, } = Layout;
 
 
