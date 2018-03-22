@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PageLayout from '../../containers/Layout';
-import { Form, Input, Button, Card, Spin, Icon, notification, } from 'antd';
+import { Form, Input, Button, Icon, notification, } from 'antd';
 import uuid from 'uuid/v1';
 
 import factory from '../../ethereum/factory';

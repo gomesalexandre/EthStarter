@@ -1,5 +1,3 @@
-import thunk from 'redux-thunk';
-
 export const addAccounts = accounts => ({
   type: 'ADD_FETCHED_ACCOUNTS',
   payload: accounts,

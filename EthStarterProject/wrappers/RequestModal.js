@@ -35,7 +35,11 @@ const RequestModal = props => (
 );
 
 RequestModal.propTypes = {
-  isRequestModalVisible: PropTy
+  dispatch: PropTypes.func,
+  handleRequestOk: PropTypes.func,
+  isRequestModalVisible: PropTypes.bool,
+  loading: PropTypes.bool,
+  newRequest: PropTypes.obj,
 };
 
 export default RequestModal;

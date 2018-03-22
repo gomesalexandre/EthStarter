@@ -1,16 +1,11 @@
-import thunk from 'redux-thunk';
-import factory from '../ethereum/factory';
-
-import web3 from '../ethereum/web3';
 import CampaignInstance from '../ethereum/campaign';
 
 export function createRequest(campaignAddress, newRequest, from) {
   return async function action(dispatch) {
   dispatch({type:'SET_LOADING_TRUE', });
   try {
-    const accounts = await web3.eth.getAccounts();
     const campaignInstance = await CampaignInstance(campaignAddress);
-    const result = await campaignInstance.methods
+    await campaignInstance.methods
       .createRequest(newRequest.description, newRequest.value, newRequest.recipient)
       .send({from, });
 

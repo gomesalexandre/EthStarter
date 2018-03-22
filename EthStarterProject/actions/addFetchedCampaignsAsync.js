@@ -1,4 +1,3 @@
-import thunk from 'redux-thunk';
 import factory from '../ethereum/factory';
 
 export const addCampaigns = campaigns => ({

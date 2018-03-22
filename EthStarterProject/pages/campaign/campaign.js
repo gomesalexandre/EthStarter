@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Breadcrumb, Tag, Row, Col, Button, Modal, Layout, Menu, Form, Input, InputNumber, List, Icon, notification, } from 'antd';
+import { Card, Breadcrumb, Button, Layout, Menu, Form, Input, } from 'antd';
 import { nextConnect, } from '../../store/initStore';
 import web3 from '../../ethereum/web3';
-import CampaignInstance from '../../ethereum/campaign';
 import { createRequest, } from '../../actions/createRequestAsync';
 import { getAccounts, } from '../../actions/addAccountsAsync';
 import PageLayout from '../../containers/Layout';
 import RequestModal from '../../wrappers/RequestModal';
-import ContributeForm from '../../containers/ContributeForm';
-import Router from 'next/router';
 import { getCampaignSummary, } from '../../actions/getCampaignSummaryAsync';
 
 class Campaign extends React.Component {
@@ -40,7 +37,7 @@ class Campaign extends React.Component {
   showContributeForm() {
     this.setState({isContributeCardVisible: true, });
   }
-  showRequestModal(data) {
+  showRequestModal() {
     try {
       this.props.form.validateFields((err, values) =>{
         this.props.dispatch({

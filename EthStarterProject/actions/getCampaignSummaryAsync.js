@@ -1,5 +1,3 @@
-import thunk from 'redux-thunk';
-import factory from '../ethereum/factory';
 import CampaignInstance from '../ethereum/campaign';
 export const addCampaignSummary = summary => ({
   type: 'ADD_CAMPAIGN_SUMMARY_TO_STATE',
