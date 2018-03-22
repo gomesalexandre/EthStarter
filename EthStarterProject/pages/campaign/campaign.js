@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, Breadcrumb, Tag, Row, Col, Button, Modal, Layout, Menu, Form, Input, InputNumber, List, Icon, notification, } from 'antd';
 import { nextConnect, } from '../../store/initStore';
 import web3 from '../../ethereum/web3';
@@ -60,7 +61,6 @@ class Campaign extends React.Component {
   }
 
   render(){
-    console.log('props are', this.props);
     const { getFieldDecorator, } = this.props.form;
     const { loading, newRequest, } = this.props;
     const isRequestModalVisible = this.state.isRequestModalVisible;
@@ -123,7 +123,7 @@ class Campaign extends React.Component {
                   }
                   <Card type="inner" title="Address">{this.props.campaign.address}</Card>
                   <Card type="inner" title="Minimum Contribution">
-                    {this.props.campaignminimumContribution} wei ({web3.utils.fromWei(this.props.campaign.minimumContribution, 'ether')} ethers)
+                    {this.props.campaign.minimumContribution} wei ({web3.utils.fromWei(this.props.campaign.minimumContribution, 'ether')} ethers)
                   </Card>
                   <Card type="inner" title="Manager">{this.props.campaign.manager}</Card>
                   <Card type="inner" title="Contributers">{this.props.campaign.approversCount}</Card>
@@ -135,5 +135,16 @@ class Campaign extends React.Component {
     );}
 }
 
+Campaign.propTypes = {
+  dispatch: PropTypes.func,
+  query: PropTypes.obj,
+  form: PropTypes.obj,
+  campaign: PropTypes.obj,
+  newRequest: PropTypes.obj,
+  accounts: PropTypes.arr,
+  loading: PropTypes.bool,
+  address: PropTypes.string,
+
+};
 const ParsedCampaign = Form.create({})(Campaign);
 export default nextConnect(state => state)(ParsedCampaign);

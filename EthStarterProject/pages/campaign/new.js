@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PageLayout from '../../containers/Layout';
 import { Form, Input, Button, Card, Spin, Icon, notification, } from 'antd';
 import uuid from 'uuid/v1';
@@ -57,9 +58,12 @@ class NewCampaign extends React.Component {
     );
   }
 }
+NewCampaign.propTypes = {
+  form: PropTypes.object,
+};
 const NewCampaignForm = Form.create({})(NewCampaign);
 
-export default () => (
+export default () =>(
   <PageLayout selected="new">
     <h3>Create a new campaign</h3>
       <NewCampaignForm/>

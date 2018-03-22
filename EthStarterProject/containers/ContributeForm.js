@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, Button, Select, Input, } from 'antd';
+import PropTypes from 'prop-types';
+import { Form, Button, Select, Input, Icon, } from 'antd';
 
 class ContributeForm extends React.Component {
   getinitialProps() {
@@ -32,6 +33,12 @@ class ContributeForm extends React.Component {
     );
   }
 }
+
+ContributeForm.propTypes = {
+  form: PropTypes.object,
+  currency: PropTypes.string,
+  loading: PropTypes.bool,
+};
 const GeneratedContributeForm = Form.create({})(ContributeForm);
 
 export default () => (

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { nextConnect, } from '../store/initStore';
 import { Layout, Breadcrumb, Card, Row, Col, Button, Tag, List, Spin, } from 'antd';
 
@@ -8,8 +9,6 @@ import PageLayout from '../containers/Layout';
 
 import CampaignCard from '../wrappers/CampaignCard';
 const { Header, Content, } = Layout;
-
-
 
 class CampaignsIndex extends React.Component {
   async componentDidMount() {
@@ -31,4 +30,9 @@ class CampaignsIndex extends React.Component {
   );
 }}
 
+CampaignsIndex.propTypes = {
+  dispatch: PropTypes.func,
+  loading: PropTypes.bool,
+  campaigns: PropTypes.array,
+};
 export default nextConnect(state => state)(CampaignsIndex);
