@@ -5,8 +5,9 @@ import web3 from '../../ethereum/web3';
 import CampaignInstance from '../../ethereum/campaign';
 import { createRequest, } from '../../actions/createRequestAsync';
 import { getAccounts, } from '../../actions/addAccountsAsync';
-import PageLayout from '../../components/Layout';
-import ContributeForm from '../../components/ContributeForm';
+import PageLayout from '../../containers/Layout';
+import RequestModal from '../../wrappers/RequestModal';
+import ContributeForm from '../../containers/ContributeForm';
 import Router from 'next/router';
 import { getCampaignSummary, } from '../../actions/getCampaignSummaryAsync';
 
@@ -61,38 +62,16 @@ class Campaign extends React.Component {
   render(){
     console.log('props are', this.props);
     const { getFieldDecorator, } = this.props.form;
-
+    const { loading, newRequest, } = this.props;
+    const isRequestModalVisible = this.state.isRequestModalVisible;
     return(
       <PageLayout>
-        <Modal
-        visible={this.state.isRequestModalVisible}
-        title="New Request"
-        onOk={() => this.handleRequestOk()}
-        okText={this.props.loading ? <Icon type="loading" /> : 'Request'}
-        >
-         <List
-        grid={{ gutter: 16, column: 3, }}
-        dataSource={[
-          {
-            title: 'Value',
-            content: this.props.newRequest ? this.props.newRequest.value : '' ,
-          },
-          {
-            title: 'Description',
-            content: this.props.newRequest ? this.props.newRequest.description : '' ,
-          },
-          {
-            title: 'Recipient',
-            content: this.props.newRequest ? this.props.newRequest.recipient : '',
-          },
-        ]}
-        renderItem={item => (
-          <List.Item>
-            <Card title={item.title}>{item.content}</Card>
-          </List.Item>
-        )}
-        />
-        </Modal>
+          <RequestModal
+            isRequestModalVisible={isRequestModalVisible}
+            handleRequestOk={() => this.handleRequestOk()}
+            loading={loading}
+            newRequest={newRequest}
+          />
           <Breadcrumb>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
             <Breadcrumb.Item><a href="">Campaigns</a></Breadcrumb.Item>

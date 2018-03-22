@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../../components/Layout';
+import PageLayout from '../../containers/Layout';
 import { Form, Input, Button, Card, Spin, Icon, notification, } from 'antd';
 import uuid from 'uuid/v1';
 

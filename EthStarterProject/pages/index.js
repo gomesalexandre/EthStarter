@@ -4,9 +4,9 @@ import { Layout, Breadcrumb, Card, Row, Col, Button, Tag, List, Spin, } from 'an
 
 import { getCampaigns, } from '../actions/addFetchedCampaignsAsync';
 
-import PageLayout from '../components/Layout';
+import PageLayout from '../containers/Layout';
 
-import CampaignCard from '../decorators/CampaignCard';
+import CampaignCard from '../wrappers/CampaignCard';
 const { Header, Content, } = Layout;
 
 
