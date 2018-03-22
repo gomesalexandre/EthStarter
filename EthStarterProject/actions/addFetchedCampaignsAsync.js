@@ -6,7 +6,7 @@ export const addCampaigns = campaigns => ({
   payload: campaigns,
 });
 
-export function getCampaigns() {
+export function getCampaigns(web3) {
   return async function action(dispatch) {
     const campaigns = await factory.methods.getDeployedCampaigns().call();
     dispatch(addCampaigns(campaigns));

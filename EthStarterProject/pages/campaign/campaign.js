@@ -4,6 +4,7 @@ import { nextConnect, } from '../../store/initStore';
 import web3 from '../../ethereum/web3';
 import CampaignInstance from '../../ethereum/campaign';
 import { createRequest, } from '../../actions/createRequestAsync';
+import { getAccounts, } from '../../actions/addAccountsAsync';
 import PageLayout from '../../components/Layout';
 import ContributeForm from '../../components/ContributeForm';
 import Router from 'next/router';
@@ -22,10 +23,14 @@ class Campaign extends React.Component {
     requestValue: 0,
   }
 
+  static getInitialProps ({ store, query, }) {
+    store.dispatch({ type: 'GET_INITIAL_PROPS', });
+    return { query, };
+  }
+
   async componentDidMount() {
-    console.log(this.props.query);
-    console.log('props are', this.props);
-    await this.props.dispatch(getCampaignSummary(this.props.address));
+    await this.props.dispatch(getCampaignSummary(this.props.query.address));
+    await this.props.dispatch(getAccounts(web3));
   }
   showRequestForm() {
     this.setState({isRequestCardVisible: true,});
@@ -34,8 +39,6 @@ class Campaign extends React.Component {
     this.setState({isContributeCardVisible: true, });
   }
   showRequestModal(data) {
-    this.setState({isRequestModalVisible: true,});
-
     try {
       this.props.form.validateFields((err, values) =>{
         this.props.dispatch({
@@ -44,16 +47,19 @@ class Campaign extends React.Component {
             requestDescription: values.requestDescription,
             requestRecipient: values.requestRecipient,
             requestValue: values.requestValue,
-            },
+          },
         });
+
+        this.setState({isRequestModalVisible: true,});
       });
     } catch(e) {throw e;}
   }
   async handleRequestOk() {
-    await this.props.dispatch(createRequest(this.props.campaign.address, this.props.newRequest));
+    await this.props.dispatch(createRequest(this.props.campaign.address, this.props.newRequest, this.props.accounts[0]));
   }
 
   render(){
+    console.log('props are', this.props);
     const { getFieldDecorator, } = this.props.form;
 
     return(
@@ -136,9 +142,9 @@ class Campaign extends React.Component {
                       </Form>
                     </Card>
                   }
-                  <Card type="inner" title="Address">{this.props.address}</Card>
+                  <Card type="inner" title="Address">{this.props.campaign.address}</Card>
                   <Card type="inner" title="Minimum Contribution">
-                    {this.props.minimumContribution} wei ({web3.utils.fromWei(this.props.campaign.minimumContribution, 'ether')} ethers)
+                    {this.props.campaignminimumContribution} wei ({web3.utils.fromWei(this.props.campaign.minimumContribution, 'ether')} ethers)
                   </Card>
                   <Card type="inner" title="Manager">{this.props.campaign.manager}</Card>
                   <Card type="inner" title="Contributers">{this.props.campaign.approversCount}</Card>

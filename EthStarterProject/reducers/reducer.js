@@ -30,6 +30,9 @@ export const reducer = (state = initialState, action) => {
       },
       });
       break;
+    case "ADD_FETCHED_ACCOUNTS" :
+      newState = Object.assign({}, state, {accounts: action.payload, });
+      break;
     default :
       newState = initialState;
   }
