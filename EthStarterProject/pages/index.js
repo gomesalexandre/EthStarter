@@ -22,7 +22,7 @@ class CampaignsIndex extends React.Component {
       <PageLayout selected="campaigns">
         <h1 style={{"textAlign" : "center",}}>Opened campaigns</h1>
         <Row type="flex" justify="center">
-          {this.props.campaigns ? this.props.campaigns.map( (campaignAddress, i) => CampaignCard(campaignAddress, i)) : <Spin size="large" />}
+          {!this.props.loading ? this.props.campaigns.map( (campaignAddress, i) => CampaignCard(campaignAddress, i)) : <Spin size="large" />}
         </Row>
         <Row type="flex" justify="left">
           <Button type="primary">Create a campaign</Button>
