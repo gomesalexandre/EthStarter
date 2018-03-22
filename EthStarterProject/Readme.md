@@ -10,6 +10,7 @@ They will only be released to the supplier after a request has been made by the 
 
 - Metamask installed and set on Rinkeby testnet with some Eth in your address (https://faucet.rinkeby.io/ will provide you with some) :
 Mneumonic is needed for the deployment of the contract, so keep it ! 
+_Any web3 enabled browser will do as well, such as Cipher or Status.im on mobile_
 - An Infura endpoint URL (https://infura.io/)
 - Node.js >= 7.6 for the async/await magic
 - Rename `config.example.js` to `config.js` with an Infura Rinkeby endpoint URL, and your metamask mneumonic(seedphrase)
