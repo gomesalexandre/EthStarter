@@ -14,14 +14,6 @@ class Campaign extends React.Component {
     super(props);
   }
 
-  state = {
-    isRequestModalVisible: false,
-    isContributeCardVisible: false,
-    requestDescription: '',
-    requestRecipient: '',
-    requestValue: 0,
-  }
-
   static getInitialProps ({ store, query, }) {
     store.dispatch({ type: 'GET_INITIAL_PROPS', });
     return { query, };
@@ -32,11 +24,11 @@ class Campaign extends React.Component {
     await this.props.dispatch(getAccounts(web3));
   }
   showRequestForm() {
-    this.setState({isRequestCardVisible: true,});
+    this.dispatch({type: 'SHOW_REQUEST_FORM', });
   }
-  showContributeForm() {
-    this.setState({isContributeCardVisible: true, });
-  }
+  // showContributeForm() {
+  //   this.setState({isContributeCardVisible: true, });
+  // }
   showRequestModal() {
     try {
       this.props.form.validateFields((err, values) =>{
@@ -49,7 +41,7 @@ class Campaign extends React.Component {
           },
         });
 
-        this.setState({isRequestModalVisible: true,});
+        this.props.dispatch({type: 'SHOW_REQUEST_MODAL',});
       });
     } catch(e) {throw e;}
   }
@@ -60,7 +52,7 @@ class Campaign extends React.Component {
   render(){
     const { getFieldDecorator, } = this.props.form;
     const { loading, newRequest, } = this.props;
-    const isRequestModalVisible = this.state.isRequestModalVisible;
+    const isRequestModalVisible = this.props.isRequestModalVisible;
     return(
       <PageLayout>
           <RequestModal
@@ -91,9 +83,9 @@ class Campaign extends React.Component {
               </Layout.Sider>
               <Layout.Content>
                 <Card title="Campaign">
-                  <Button type={this.state.isRequestCardVisible ? "primary" : "secondary"} icon="file" onClick={() => this.showRequestForm()}>Create new request</Button>
-                  <Button type="secondary" icon="file" onClick={() => this.showContributeForm()}>Contribute</Button>
-                  { this.state.isRequestCardVisible &&
+                  <Button type={this.props.isRequestCardVisible ? "primary" : "secondary"} icon="file" onClick={() => this.showRequestForm()}>Create new request</Button>
+                  {/* <Button type="secondary" icon="file" onClick={() => this.showContributeForm()}>Contribute</Button> */}
+                  { this.props.isRequestCardVisible &&
                     <Card type="inner" title="New request">
                       <Form layout="inline">
                         <Form.Item label= "Description">
@@ -140,6 +132,8 @@ Campaign.propTypes = {
   newRequest: PropTypes.obj,
   accounts: PropTypes.arr,
   loading: PropTypes.bool,
+  isRequestCardVisible: PropTypes.bool,
+  isRequestModalVisible: PropTypes.bool,
   address: PropTypes.string,
 
 };

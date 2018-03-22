@@ -4,6 +4,7 @@ import { Modal, List, Card, Icon, } from 'antd';
 
 const RequestModal = props => (
   <Modal
+          width={'80%'}
           visible={props.isRequestModalVisible}
           title="New Request"
           onOk={props.handleRequestOk}

@@ -12,4 +12,6 @@ export default {
     approversCount: 0,
     requests: 0,
   },
+  isRequestModalVisible: false,
+  isRequestCardVisible: false,
 };

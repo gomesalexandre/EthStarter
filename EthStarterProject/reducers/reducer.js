@@ -33,6 +33,12 @@ export const reducer = (state = initialState, action) => {
     case "ADD_FETCHED_ACCOUNTS" :
       newState = Object.assign({}, state, {accounts: action.payload, });
       break;
+    case "SHOW_REQUEST_MODAL" :
+      newState = Object.assign({}, state, {isRequestModalVisible: true,});
+      break;
+    case "SHOW_REQUEST_CARD" :
+    newState = Object.assign({}, state, {isRequestCardVisible: true,});
+    break;
     default :
       newState = initialState;
   }
