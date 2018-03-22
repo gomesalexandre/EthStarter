@@ -55,7 +55,8 @@ describe('Campaign factory', () =>{
   it('Manager can make a payment request', async () => {
     await campaign.methods.createRequest('Buy coffee and pizza to feed the devs', '100', accounts[1])
       .send({from: accounts[0], gas: '250000',});
-    const request = await campaign.methods.requests(0).call();
+    // const request = await campaign.methods.requests(0).call();
+    //TODO: Assertion
   });
 });
 

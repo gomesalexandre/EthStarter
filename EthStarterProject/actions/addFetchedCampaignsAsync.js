@@ -5,7 +5,7 @@ export const addCampaigns = campaigns => ({
   payload: campaigns,
 });
 
-export function getCampaigns(web3) {
+export function getCampaigns() {
   return async function action(dispatch) {
     dispatch({type:'SET_LOADING_TRUE', });
 

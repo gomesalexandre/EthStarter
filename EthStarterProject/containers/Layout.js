@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import stylesheet from 'antd/dist/antd.min.css';
 import Header from './Header';
-import { Layout, Menu, Breadcrumb, Icon, Card, Row, Col, Button, } from 'antd';
+import { Layout, } from 'antd';
 const { Content, Footer, } = Layout;
 
 
@@ -33,5 +34,10 @@ class PageLayout extends React.Component {
       </Layout>
   );
 }}
+
+PageLayout.propTypes = {
+  children: PropTypes.obj,
+  selected: PropTypes.arr,
+};
 
 export default PageLayout;

@@ -19,7 +19,7 @@ class Campaign extends React.Component {
     return { query, };
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
     await this.props.dispatch(getCampaignSummary(this.props.query.address));
     await this.props.dispatch(getAccounts(web3));
   }

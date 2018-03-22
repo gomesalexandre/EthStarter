@@ -1,5 +1,4 @@
 const express = require('express');
-const { parse, } = require('url');
 const next = require('next');
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev, });
