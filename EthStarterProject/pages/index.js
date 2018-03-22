@@ -2,7 +2,7 @@ import React from 'react';
 import { nextConnect, } from '../store/initStore';
 import { Layout, Breadcrumb, Card, Row, Col, Button, Tag, List, Spin, } from 'antd';
 
-import { getCampaigns, } from '../actions/addFetchedCampaigns';
+import { getCampaigns, } from '../actions/addFetchedCampaignsAsync';
 
 import PageLayout from '../components/Layout';
 

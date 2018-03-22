@@ -3,9 +3,11 @@ import { Card, Breadcrumb, Tag, Row, Col, Button, Modal, Layout, Menu, Form, Inp
 import { nextConnect, } from '../../store/initStore';
 import web3 from '../../ethereum/web3';
 import CampaignInstance from '../../ethereum/campaign';
+import { createRequest, } from '../../actions/createRequestAsync';
 import PageLayout from '../../components/Layout';
 import ContributeForm from '../../components/ContributeForm';
 import Router from 'next/router';
+import { getCampaignSummary, } from '../../actions/getCampaignSummaryAsync';
 
 class Campaign extends React.Component {
   constructor(props) {
@@ -18,21 +20,12 @@ class Campaign extends React.Component {
     requestDescription: '',
     requestRecipient: '',
     requestValue: 0,
-    loading: false,
   }
 
-  static async getInitialProps ({query,}) {
-    const campaignInstance = CampaignInstance(query.address);
-    const campaignSummary = await campaignInstance.methods.getSummary().call();
-    return({
-      address: query.address,
-      balance: campaignSummary[0],
-      minimumContribution: campaignSummary[1],
-      manager: campaignSummary[2],
-      approversCount: campaignSummary[3],
-      requests: campaignSummary[4],
-      campaignInstance: campaignInstance,
-    });
+  async componentDidMount() {
+    console.log(this.props.query);
+    console.log('props are', this.props);
+    await this.props.dispatch(getCampaignSummary(this.props.address));
   }
   showRequestForm() {
     this.setState({isRequestCardVisible: true,});
@@ -45,38 +38,21 @@ class Campaign extends React.Component {
 
     try {
       this.props.form.validateFields((err, values) =>{
-        this.setState({
-          requestDescription: values.requestDescription,
-          requestRecipient: values.requestRecipient,
-          requestValue: values.requestValue,
+        this.props.dispatch({
+          type: 'SET_REQUEST_IN_STORE',
+          payload: {
+            requestDescription: values.requestDescription,
+            requestRecipient: values.requestRecipient,
+            requestValue: values.requestValue,
+            },
         });
       });
     } catch(e) {throw e;}
   }
   async handleRequestOk() {
-    this.setState({loading: true,});
-
-    try {
-      const accounts = await web3.eth.getAccounts();
-      const campaignInstance = await CampaignInstance(this.props.address);
-      const result = await campaignInstance.methods
-        .createRequest(this.state.requestDescription, this.state.requestValue, this.state.requestRecipient)
-        .send({from: accounts[0],});
-
-      notification.success({
-        message: 'New request created',
-        description: 'Reload page',
-        icon: <Icon type="check" style={{ color: '#4CAF50', }} />,
-      });
-
-      Router.push(`/campaign/${this.props.address}`);
-    } catch(e) {
-        notification.error({
-          message: 'Tx failed',
-          description: e.message,
-        });
-    } finally { this.setState({loading: false,}); }
+    await this.props.dispatch(createRequest(this.props.campaign.address, this.props.newRequest));
   }
+
   render(){
     const { getFieldDecorator, } = this.props.form;
 
@@ -86,22 +62,22 @@ class Campaign extends React.Component {
         visible={this.state.isRequestModalVisible}
         title="New Request"
         onOk={() => this.handleRequestOk()}
-        okText={this.state.loading ? <Icon type="loading" /> : 'Request'}
+        okText={this.props.loading ? <Icon type="loading" /> : 'Request'}
         >
          <List
         grid={{ gutter: 16, column: 3, }}
         dataSource={[
           {
             title: 'Value',
-            content: this.state.requestValue,
+            content: this.props.newRequest ? this.props.newRequest.value : '' ,
           },
           {
             title: 'Description',
-            content: this.state.requestDescription,
+            content: this.props.newRequest ? this.props.newRequest.description : '' ,
           },
           {
             title: 'Recipient',
-            content: this.state.requestRecipient,
+            content: this.props.newRequest ? this.props.newRequest.recipient : '',
           },
         ]}
         renderItem={item => (
@@ -124,11 +100,11 @@ class Campaign extends React.Component {
                   defaultOpenKeys={['sub1',]}
                   style={{ height: '100%', }}
                 >
-                  <Menu.SubMenu key="requests" requests={() => this.props.requests}title={<span>Requests</span>}>
-                    {[1,2,].map((x,i) => (
-                      <Menu.Item >Request {this.props.requests}</Menu.Item>
+                  {/* <Menu.SubMenu key="requests" requests={() => this.props.requests}title={<span>Requests</span>}>
+                    {[1,2,].map((x,i) => ( //TODO: Get actual requests !
+                      <Menu.Item key={i} >Request number here</Menu.Item>
                     ))}
-                  </Menu.SubMenu>
+                  </Menu.SubMenu> */}
                 </Menu>
               </Layout.Sider>
               <Layout.Content>
@@ -162,16 +138,17 @@ class Campaign extends React.Component {
                   }
                   <Card type="inner" title="Address">{this.props.address}</Card>
                   <Card type="inner" title="Minimum Contribution">
-                    {this.props.minimumContribution} wei ({web3.utils.fromWei(this.props.minimumContribution, 'ether')} ethers)
+                    {this.props.minimumContribution} wei ({web3.utils.fromWei(this.props.campaign.minimumContribution, 'ether')} ethers)
                   </Card>
-                  <Card type="inner" title="Manager">{this.props.manager}</Card>
-                  <Card type="inner" title="Contributers">{this.props.approversCount}</Card>
-                  <Card type="inner" title="Requests">{this.props.requests}</Card>
+                  <Card type="inner" title="Manager">{this.props.campaign.manager}</Card>
+                  <Card type="inner" title="Contributers">{this.props.campaign.approversCount}</Card>
+                  {/* <Card type="inner" title="Requests">{this.props.campaign.requests}</Card> */}
                 </Card>
               </Layout.Content>
             </Layout>
       </PageLayout>
     );}
 }
+
 const ParsedCampaign = Form.create({})(Campaign);
 export default nextConnect(state => state)(ParsedCampaign);
