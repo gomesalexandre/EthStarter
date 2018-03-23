@@ -25,8 +25,8 @@ _Any web3 enabled browser will do as well, such as Cipher or Status.im on mobile
 
 e2e/unit tests are included :
 
-- To run the end-to-end tests, cd into the project folder and run `mocha --recursive ethereum/test/e2e`
-- To run the unit tests, cd into the project folder and run `mocha --recursive ethereum/test/unit`
+- To run the unit tests, cd into the project folder and run `yarn test --recursive ethereum/test/unit`
+- To run the end-to-end tests, cd into the project folder and run `yarn test --recursive ethereum/test/e2e`
 
 ## Using the smart contract on Remix (Advanced)
 
