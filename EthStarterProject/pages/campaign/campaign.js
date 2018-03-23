@@ -25,7 +25,7 @@ class Campaign extends React.Component {
     await this.props.dispatch(getAccounts(web3));
   }
   showRequestForm() {
-    this.dispatch({type: 'SHOW_REQUEST_FORM' });
+    this.props.dispatch({type: 'SHOW_REQUEST_FORM' });
   }
   // showContributeForm() {
   //   this.setState({isContributeCardVisible: true, });
