@@ -5,20 +5,20 @@ export const reducer = (state = initialState, action) => {
 
   switch(action.type) {
     case "ADD_FETCHED_CAMPAIGNS" :
-      newState = Object.assign({}, state, {campaigns: action.payload, });
+      newState = Object.assign({}, state, {campaigns: action.payload });
       break;
     case "SET_LOADING_TRUE" :
-      newState = Object.assign({}, state, {loading: true, });
+      newState = Object.assign({}, state, {loading: true });
       break;
     case "SET_LOADING_FALSE" :
-      newState = Object.assign({}, state, {loading: false, });
+      newState = Object.assign({}, state, {loading: false });
       break;
     case "SET_REQUEST_IN_STORE" :
       newState = Object.assign({}, state, {newRequest: {
         description: action.payload.requestDescription,
         recipient: action.payload.requestRecipient,
         value: action.payload.requestValue,
-      }, });
+      } });
       break;
     case "ADD_CAMPAIGN_SUMMARY_TO_STATE" :
       newState = Object.assign({}, state, {campaign: {
@@ -31,13 +31,13 @@ export const reducer = (state = initialState, action) => {
       });
       break;
     case "ADD_FETCHED_ACCOUNTS" :
-      newState = Object.assign({}, state, {accounts: action.payload, });
+      newState = Object.assign({}, state, {accounts: action.payload });
       break;
     case "SHOW_REQUEST_MODAL" :
-      newState = Object.assign({}, state, {isRequestModalVisible: true,});
+      newState = Object.assign({}, state, {isRequestModalVisible: true});
       break;
     case "SHOW_REQUEST_CARD" :
-    newState = Object.assign({}, state, {isRequestCardVisible: true,});
+    newState = Object.assign({}, state, {isRequestCardVisible: true});
     break;
     default :
       newState = initialState;

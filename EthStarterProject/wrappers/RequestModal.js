@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, List, Card, Icon, } from 'antd';
+import { Modal, List, Card, Icon } from 'antd';
 
 const RequestModal = props => (
   <Modal
@@ -11,7 +11,7 @@ const RequestModal = props => (
           okText={props.loading ? <Icon type="loading" /> : 'Request'}
           >
           <List
-          grid={{ gutter: 16, column: 3, }}
+          grid={{ gutter: 16, column: 3 }}
           dataSource={[
             {
               title: 'Value',

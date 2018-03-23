@@ -1,22 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Breadcrumb, Button, Layout, Menu, Form, Input, } from 'antd';
-import { nextConnect, } from '../../store/initStore';
+import { Card, Button, Layout, Menu, Form, Input } from 'antd';
+import { nextConnect } from '../../store/initStore';
 import web3 from '../../ethereum/web3';
-import { createRequest, } from '../../actions/createRequestAsync';
-import { getAccounts, } from '../../actions/addAccountsAsync';
+import { createRequest } from '../../actions/createRequestAsync';
+import { getAccounts } from '../../actions/addAccountsAsync';
 import PageLayout from '../../containers/Layout';
 import RequestModal from '../../wrappers/RequestModal';
-import { getCampaignSummary, } from '../../actions/getCampaignSummaryAsync';
+import BreadCrumb from '../../wrappers/BreadCrumb';
+import { getCampaignSummary } from '../../actions/getCampaignSummaryAsync';
 
 class Campaign extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  static getInitialProps ({ store, query, }) {
-    store.dispatch({ type: 'GET_INITIAL_PROPS', });
-    return { query, };
+  static getInitialProps ({ store, query }) {
+    store.dispatch({ type: 'GET_INITIAL_PROPS' });
+    return { query };
   }
 
   async componentWillMount() {
@@ -24,14 +25,14 @@ class Campaign extends React.Component {
     await this.props.dispatch(getAccounts(web3));
   }
   showRequestForm() {
-    this.dispatch({type: 'SHOW_REQUEST_FORM', });
+    this.dispatch({type: 'SHOW_REQUEST_FORM' });
   }
   // showContributeForm() {
   //   this.setState({isContributeCardVisible: true, });
   // }
   showRequestModal() {
     try {
-      this.props.form.validateFields((err, values) =>{
+      this.props.form.validateFields((err, values) => {
         this.props.dispatch({
           type: 'SET_REQUEST_IN_STORE',
           payload: {
@@ -41,7 +42,7 @@ class Campaign extends React.Component {
           },
         });
 
-        this.props.dispatch({type: 'SHOW_REQUEST_MODAL',});
+        this.props.dispatch({type: 'SHOW_REQUEST_MODAL'});
       });
     } catch(e) {throw e;}
   }
@@ -50,8 +51,8 @@ class Campaign extends React.Component {
   }
 
   render(){
-    const { getFieldDecorator, } = this.props.form;
-    const { loading, newRequest, } = this.props;
+    const { getFieldDecorator } = this.props.form;
+    const { loading, newRequest } = this.props;
     const isRequestModalVisible = this.props.isRequestModalVisible;
     return(
       <PageLayout>
@@ -61,18 +62,17 @@ class Campaign extends React.Component {
             loading={loading}
             newRequest={newRequest}
           />
-          <Breadcrumb>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item><a href="">Campaigns</a></Breadcrumb.Item>
-            <Breadcrumb.Item>{this.props.address}</Breadcrumb.Item>
-          </Breadcrumb>
-            <Layout style={{"padding": "0 50px",}}>
-             <Layout.Sider width={200} style={{ background: '#fff', }}>
+            <BreadCrumb path={[
+              {title: 'Campaigns', url: 'http://foo.bar'},
+              {title: this.props.query.address, url:'http://foo.bar' },
+               ]}/>
+            <Layout style={{"padding": "0 50px"}}>
+             <Layout.Sider width={200} style={{ background: '#fff' }}>
                 <Menu
                   mode="inline"
-                  defaultSelectedKeys={['1',]}
-                  defaultOpenKeys={['sub1',]}
-                  style={{ height: '100%', }}
+                  defaultSelectedKeys={['1']}
+                  defaultOpenKeys={['sub1']}
+                  style={{ height: '100%' }}
                 >
                   {/* <Menu.SubMenu key="requests" requests={() => this.props.requests}title={<span>Requests</span>}>
                     {[1,2,].map((x,i) => ( //TODO: Get actual requests !
@@ -90,19 +90,19 @@ class Campaign extends React.Component {
                       <Form layout="inline">
                         <Form.Item label= "Description">
                           {getFieldDecorator('requestDescription', {
-                            rules: [{ required: true, whitespace: true, },],
+                            rules: [{ required: true, whitespace: true }],
                             })(<Input />)
                           }
                         </Form.Item>
                         <Form.Item label= "Value">
                         {getFieldDecorator('requestValue', {
-                            rules: [{ required: true, whitespace: true, },],
+                            rules: [{ required: true, whitespace: true }],
                             })(<Input />)
                         }
                         </Form.Item>
                         <Form.Item label= "Recipient">
                         {getFieldDecorator('requestRecipient', {
-                            rules: [{ required: true, whitespace: true, },],
+                            rules: [{ required: true, whitespace: true }],
                             })(<Input />)
                         }
                         </Form.Item>

@@ -1,25 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button, Select, Input, Icon, } from 'antd';
+import { Form, Button, Select, Input, Icon } from 'antd';
 
 class ContributeForm extends React.Component {
   getinitialProps() {
-    return({loading: false, form: '', minEth: 0,});
+    return({loading: false, form: '', minEth: 0});
   }
   render() {
-    const { getFieldDecorator, } = this.props.form;
+    const { getFieldDecorator } = this.props.form;
     return(
       <Form onSubmit={this.handleSubmit}>
       <Form.Item>
         <span>
           {getFieldDecorator('minEth', {
-            rules: [{ required: true, message: 'Amount to contribute', whitespace: true, },],
+            rules: [{ required: true, message: 'Amount to contribute', whitespace: true }],
             })(<Input />)
           }
           <Select
           value={this.props.currency || 'ether'}
           size={2}
-          style={{ width: '32%', }}
+          style={{ width: '32%' }}
           >
             <Select.Option value="wei">wei</Select.Option>
             <Select.Option value="ether">ether</Select.Option>

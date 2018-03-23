@@ -9,6 +9,6 @@ export function getCampaignSummary(address) {
     const campaignInstance = CampaignInstance(address);
     const campaignSummary = await campaignInstance.methods.getSummary().call();
 
-    dispatch({type: 'ADD_CAMPAIGN_SUMMARY_TO_STATE', payload: campaignSummary, address: address, });
+    dispatch({type: 'ADD_CAMPAIGN_SUMMARY_TO_STATE', payload: campaignSummary, address: address });
   };
 }

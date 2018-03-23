@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import stylesheet from 'antd/dist/antd.min.css';
 import Header from './Header';
-import { Layout, } from 'antd';
-const { Content, Footer, } = Layout;
+import { Layout } from 'antd';
+const { Content, Footer } = Layout;
 
 
 class PageLayout extends React.Component {
@@ -14,7 +14,7 @@ class PageLayout extends React.Component {
   render() {
     return(
       <Layout>
-        <style dangerouslySetInnerHTML={{ __html: stylesheet, }} />
+        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
         <style jsx>{`
           #components-layout-demo-top-side-2 .logo {
             width: 120px;

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import {Col, Card, } from 'antd';
+import {Col, Card } from 'antd';
 import React from 'react';
 
 export default (address, key) => (
@@ -10,7 +10,7 @@ export default (address, key) => (
           <Link href={`/campaign?id=${address}`} as={`/campaign/${address}`} prefetch>
             More
           </Link>}
-        style={{ width: "500px", }}>
+        style={{ width: "500px" }}>
         <p><a href={`https://rinkeby.etherscan.io/address/${address}`}>View on EtherScan</a></p>
       </Card>
     </Col>

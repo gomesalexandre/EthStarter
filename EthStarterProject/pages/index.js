@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { nextConnect, } from '../store/initStore';
-import {Row, Button, Spin, } from 'antd';
+import { nextConnect } from '../store/initStore';
+import {Row, Button, Spin } from 'antd';
 
-import { getCampaigns, } from '../actions/addFetchedCampaignsAsync';
+import { getCampaigns } from '../actions/addFetchedCampaignsAsync';
 
 import PageLayout from '../containers/Layout';
 
@@ -18,7 +18,7 @@ class CampaignsIndex extends React.Component {
   render() {
     return(
       <PageLayout selected="campaigns">
-        <h1 style={{"textAlign" : "center",}}>Opened campaigns</h1>
+        <h1 style={{"textAlign" : "center"}}>Opened campaigns</h1>
         <Row type="flex" justify="center">
           {!this.props.loading ? this.props.campaigns.map( (campaignAddress, i) => CampaignCard(campaignAddress, i)) : <Spin size="large" />}
         </Row>

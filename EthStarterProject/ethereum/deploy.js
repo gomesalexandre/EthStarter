@@ -14,10 +14,10 @@ const deploy = async () => {
   const accounts = await web3.eth.getAccounts();
   console.log('Deploying from account', accounts[0]);
   const deployedContract = await new web3.eth.Contract(JSON.parse(compiledFactory.interface))
-    .deploy({ data: compiledFactory.bytecode,})
-    .send({gas: '1000000', from: accounts[0],});
+    .deploy({ data: compiledFactory.bytecode})
+    .send({gas: '1000000', from: accounts[0]});
 
-  await fs.writeFile('./ethereum/factoryAddress.js', `module.exports = ${JSON.stringify({address: deployedContract.options.address,})}`, 'utf-8');
+  await fs.writeFile('./ethereum/factoryAddress.js', `module.exports = ${JSON.stringify({address: deployedContract.options.address})}`, 'utf-8');
   console.log('Contract deployed to', deployedContract.options.address);
 };
 deploy();

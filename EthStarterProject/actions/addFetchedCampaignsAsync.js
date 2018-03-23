@@ -7,11 +7,11 @@ export const addCampaigns = campaigns => ({
 
 export function getCampaigns() {
   return async function action(dispatch) {
-    dispatch({type:'SET_LOADING_TRUE', });
+    dispatch({type:'SET_LOADING_TRUE' });
 
     const campaigns = await factory.methods.getDeployedCampaigns().call();
 
     dispatch(addCampaigns(campaigns));
-    dispatch({type:'SET_LOADING_FALSE', });
+    dispatch({type:'SET_LOADING_FALSE' });
   };
 }
