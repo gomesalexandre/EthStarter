@@ -6,6 +6,31 @@ They will only be released to the supplier after a request has been made by the 
 
 
 
+## Hey there 
+
+If you're reading this, you are probably a developer, CTO, or recruiter that was checking my projects. Hello ! I am sure you have a few questions in mind and I am here to answer them :
+
+  - **Why Next.JS ?**
+
+  SSR solves the SEO and performances issues of SPAs. Next.JS is an opinionated React framework. Think of it as a slightly more opinionated create-react-app. Ain't nobody have time for webpack config.
+
+  - **Why Ethereum / Solidity ?**
+
+  I strongly believe that dApps, may they be on Ethereum or any other ecosystem(Stellar, for example) are the future. Plus, smart contracts are a whole new way of thinking, as a developer. 
+
+  - **Why are you using a campaign factory instead of deploying a campaign directly ?**
+
+  We want to be able to run multiple campaigns concurrently, and also for users to pay for deployment, not us. 
+  This way, our `CampaignFactory` contract will actually be responsible for creating `Campaign` contracts. 
+  It will make us able to keep track of all the currently running campaigns
+
+  - **Do I need Metamask ?**
+
+  Well, yes and no. In reality, you need any browser with web3 capabilities. That is, a browser with Metamask plugin, Brave browser (which has built-in Metamask), or Cipher/Status on mobile,for example. On desktop, Metmask is the de-facto option, even though there are other solutions currently being developed.
+
+
+
+
 ## Requirements / Getting started 
 
 - Metamask installed and set on Rinkeby testnet with some Eth in your address (https://faucet.rinkeby.io/ will provide you with some) :
@@ -37,13 +62,6 @@ However, there is a subtle difference here ! You won't directly use the Campaign
 - Call the "deployCampaign" method, with the minimum amount of Wei required for said campaign
 - Call the "getDeployedCampaigns" method, copy the address, and load the Campaign from address
 - Voilà ! Magic happens, CampaignFactory contract has deployed a Campaign contract, that you can now use
-
-### Why is there a "Campaign Factory" ?
-
-We want to be able to run multiple campaigns concurrently, and also for users to pay for deployment, not us. 
-
-This way, our _CampaignFactory_ contract will actually be responsible for creating _Campaign_ contracts. 
-It will make us able to keep track of all the currently running campaigns
 
 ## Contract Methods 
 
