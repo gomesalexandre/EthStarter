@@ -14,4 +14,5 @@ export default {
   },
   isRequestModalVisible: false,
   isRequestCardVisible: false,
+  errors: [],
 };

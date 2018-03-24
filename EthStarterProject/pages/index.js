@@ -7,7 +7,7 @@ import { getCampaigns } from '../actions/addFetchedCampaignsAsync';
 
 import PageLayout from '../containers/Layout';
 
-import CampaignCard from '../wrappers/CampaignCard';
+import {CampaignCard} from '../wrappers';
 
 class CampaignsIndex extends React.Component {
   async componentDidMount() {

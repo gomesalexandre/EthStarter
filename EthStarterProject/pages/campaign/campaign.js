@@ -1,13 +1,13 @@
 import React from 'react';
+import Router from 'next/router';
 import PropTypes from 'prop-types';
-import { Card, Button, Layout, Menu, Form, Input } from 'antd';
-import { nextConnect } from '../../store/initStore';
 import web3 from '../../ethereum/web3';
+import { Card, Button, Layout, Menu, Form, Input, notification, Icon } from 'antd';
+import { nextConnect } from '../../store/initStore';
 import { createRequest } from '../../actions/createRequestAsync';
 import { getAccounts } from '../../actions/addAccountsAsync';
 import PageLayout from '../../containers/Layout';
-import RequestModal from '../../wrappers/RequestModal';
-import BreadCrumb from '../../wrappers/BreadCrumb';
+import {RequestModal, BreadCrumb} from '../../wrappers';
 import { getCampaignSummary } from '../../actions/getCampaignSummaryAsync';
 
 class Campaign extends React.Component {
@@ -47,7 +47,22 @@ class Campaign extends React.Component {
     } catch(e) {throw e;}
   }
   async handleRequestOk() {
-    await this.props.dispatch(createRequest(this.props.campaign.address, this.props.newRequest, this.props.accounts[0]));
+    try {
+      await this.props.dispatch(createRequest(this.props.campaign.address, this.props.newRequest, this.props.accounts[0]));
+
+      notification.success({
+        message: 'New request created',
+        description: 'Reload page',
+        icon: <Icon type="check" style={{ color: '#4CAF50' }} />,
+      });
+
+      Router.push(`/campaign/${this.props.address}`);
+    } catch(e) {
+        notification.error({
+        message: 'Tx failed',
+        description: e.message,
+        });
+    }
   }
 
   render(){

@@ -55,9 +55,6 @@ e2e/unit tests are included :
 
 ## Using the smart contract on Remix (Advanced)
 
-Test the smart contract the same way you would test it (refer to the root of this _SolidityLearning_ repo for that).
-However, there is a subtle difference here ! You won't directly use the Campaign contract. Instead : 
-
 - Copy and paste the content from 'Campaign.sol' in Remix and click on 'Create' to deploy it (make sure to select "Injected Web3" as provider)
 - Call the "deployCampaign" method, with the minimum amount of Wei required for said campaign
 - Call the "getDeployedCampaigns" method, copy the address, and load the Campaign from address
