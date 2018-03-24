@@ -5,7 +5,7 @@ import {Row, Button, Spin } from 'antd';
 
 import { getCampaigns } from '../actions/addFetchedCampaignsAsync';
 
-import PageLayout from '../containers/Layout';
+import { PageLayout } from '../containers';
 
 import {CampaignCard} from '../wrappers';
 

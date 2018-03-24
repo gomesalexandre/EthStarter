@@ -6,7 +6,7 @@ import { Card, Button, Layout, Menu, Form, Input, notification, Icon } from 'ant
 import { nextConnect } from '../../store/initStore';
 import { createRequest } from '../../actions/createRequestAsync';
 import { getAccounts } from '../../actions/addAccountsAsync';
-import PageLayout from '../../containers/Layout';
+import { PageLayout } from '../../containers';
 import {RequestModal, BreadCrumb} from '../../wrappers';
 import { getCampaignSummary } from '../../actions/getCampaignSummaryAsync';
 
