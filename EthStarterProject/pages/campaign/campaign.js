@@ -6,7 +6,7 @@ import { Card, Button, Layout, Menu, Form, Input, notification, Icon } from 'ant
 import { nextConnect } from '../../src/store/initStore';
 import { createRequest, getAccounts, getCampaignSummary, makeVisible } from '../../src/actions';
 import { PageLayout } from '../../src/containers';
-import {RequestModal, BreadCrumb} from '../../src/wrappers';
+import { RequestModal, BreadCrumb } from '../../src/wrappers';
 
 class Campaign extends React.Component {
   constructor(props) {
@@ -77,10 +77,10 @@ class Campaign extends React.Component {
             newRequest={newRequest}
           />
             <BreadCrumb path={[
-              {title: 'Campaigns', url: 'http://foo.bar'},
-              {title: this.props.query.address, url:'http://foo.bar' },
+              { title: 'Campaigns', url: 'http://foo.bar' },
+              { title: this.props.query.address, url:'http://foo.bar' },
                ]}/>
-            <Layout style={{"padding": "0 50px"}}>
+            <Layout style={{ "padding": "0 50px" }}>
              <Layout.Sider width={200} style={{ background: '#fff' }}>
                 <Menu
                   mode="inline"

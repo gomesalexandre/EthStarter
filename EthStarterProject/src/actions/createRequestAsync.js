@@ -9,7 +9,7 @@ export function createRequest(campaignAddress, newRequest, from) {
     const campaignInstance = await CampaignInstance(campaignAddress);
     await campaignInstance.methods
       .createRequest(newRequest.description, newRequest.value, newRequest.recipient)
-      .send({from});
+      .send({ from });
   } catch(e) {
       throw e;
   } finally {

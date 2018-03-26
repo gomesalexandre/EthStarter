@@ -4,7 +4,7 @@ import { Form, Button, Select, Input, Icon } from 'antd';
 
 class ContributeForm extends React.Component {
   getinitialProps() {
-    return({loading: false, form: '', minEth: 0});
+    return({ loading: false, form: '', minEth: 0 });
   }
   render() {
     const { getFieldDecorator } = this.props.form;

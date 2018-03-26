@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { nextConnect } from '../src/store/initStore';
-import {Row, Button, Spin } from 'antd';
+import { Row, Button, Spin } from 'antd';
 
 import { getCampaigns } from '../src/actions';
 
 import { PageLayout } from '../src/containers';
 
-import {CampaignCard} from '../src/wrappers';
+import { CampaignCard } from '../src/wrappers';
 
 class CampaignsIndex extends React.Component {
   async componentDidMount() {
@@ -18,7 +18,7 @@ class CampaignsIndex extends React.Component {
   render() {
     return(
       <PageLayout selected="campaigns">
-        <h1 style={{"textAlign" : "center"}}>Opened campaigns</h1>
+        <h1 style={{ "textAlign" : "center" }}>Opened campaigns</h1>
         <Row type="flex" justify="center">
           {!this.props.loading ? this.props.campaigns.map( (campaignAddress, i) => CampaignCard(campaignAddress, i)) : <Spin size="large" />}
         </Row>

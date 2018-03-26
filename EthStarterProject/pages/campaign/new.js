@@ -13,16 +13,16 @@ class NewCampaign extends React.Component {
   }
   handleSubmit = async e => {
     e.preventDefault();
-    this.setState({loading: true});
+    this.setState({ loading: true });
 
     try {
       this.props.form.validateFields((err, values) => {
         if (err) throw err;
-        this.setState({minWei: values.minWei});
+        this.setState({ minWei: values.minWei });
       });
       const campaignId = uuid();
       const accounts = await web3.eth.getAccounts();
-      const newCampaign = await factory.methods.deployCampaign(this.state.minWei).send({from: accounts[0]});
+      const newCampaign = await factory.methods.deployCampaign(this.state.minWei).send({ from: accounts[0] });
 
       notification.success({
         message: 'New campaign created',
@@ -36,7 +36,7 @@ class NewCampaign extends React.Component {
         description: err.message,
       });
     } finally {
-      this.setState({loading: false});
+      this.setState({ loading: false });
     }
   }
   render() {

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import {Col, Card } from 'antd';
+import { Col, Card } from 'antd';
 import React from 'react';
 
 export default (address, key) => (

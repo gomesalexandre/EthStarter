@@ -9,6 +9,6 @@ export function getCampaignSummary(address) {
     const campaignInstance = CampaignInstance(address);
     const campaignSummary = await campaignInstance.methods.getSummary().call();
 
-    dispatch({type: 'FETCH_CAMPAIGN_SUMMARY', payload: campaignSummary, address: address });
+    dispatch({ type: 'FETCH_CAMPAIGN_SUMMARY', payload: campaignSummary, address: address });
   };
 }

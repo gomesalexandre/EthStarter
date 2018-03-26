@@ -6,7 +6,7 @@ const { Header } = Layout;
 export default (props) => (
   <div>
     <Header>
-      <h1 style={{"color": "white"}}>EthStarter</h1>
+      <h1 style={{ "color": "white" }}>EthStarter</h1>
     </Header>
     <Menu
     // onClick={this.handleClick}
