@@ -1,8 +1,10 @@
+import { setLoading } from './setLoading';
 import CampaignInstance from '../ethereum/campaign';
 
 export function createRequest(campaignAddress, newRequest, from) {
   return async function action(dispatch) {
-  dispatch({type:'SET_LOADING_TRUE' });
+  dispatch(setLoading(true));
+
   try {
     const campaignInstance = await CampaignInstance(campaignAddress);
     await campaignInstance.methods
@@ -11,7 +13,7 @@ export function createRequest(campaignAddress, newRequest, from) {
   } catch(e) {
       throw e;
   } finally {
-      dispatch({type:'SET_LOADING_FALSE' });
+      dispatch(setLoading(false));
     }
   };
 }

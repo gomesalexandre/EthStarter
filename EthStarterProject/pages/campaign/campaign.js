@@ -1,14 +1,12 @@
 import React from 'react';
 import Router from 'next/router';
 import PropTypes from 'prop-types';
-import web3 from '../../ethereum/web3';
+import web3 from '../../src/ethereum/web3';
 import { Card, Button, Layout, Menu, Form, Input, notification, Icon } from 'antd';
-import { nextConnect } from '../../store/initStore';
-import { createRequest } from '../../actions/createRequestAsync';
-import { getAccounts } from '../../actions/addAccountsAsync';
-import { PageLayout } from '../../containers';
-import {RequestModal, BreadCrumb} from '../../wrappers';
-import { getCampaignSummary } from '../../actions/getCampaignSummaryAsync';
+import { nextConnect } from '../../src/store/initStore';
+import { createRequest, getAccounts, getCampaignSummary, makeVisible } from '../../src/actions';
+import { PageLayout } from '../../src/containers';
+import {RequestModal, BreadCrumb} from '../../src/wrappers';
 
 class Campaign extends React.Component {
   constructor(props) {
@@ -25,7 +23,7 @@ class Campaign extends React.Component {
     await this.props.dispatch(getAccounts(web3));
   }
   showRequestForm() {
-    this.props.dispatch({type: 'SHOW_REQUEST_FORM' });
+    this.props.dispatch(makeVisible('requestCard'));
   }
   // showContributeForm() {
   //   this.setState({isContributeCardVisible: true, });
@@ -34,7 +32,7 @@ class Campaign extends React.Component {
     try {
       this.props.form.validateFields((err, values) => {
         this.props.dispatch({
-          type: 'SET_REQUEST_IN_STORE',
+          type: 'PREPARE_REQUEST',
           payload: {
             requestDescription: values.requestDescription,
             requestRecipient: values.requestRecipient,
@@ -42,7 +40,7 @@ class Campaign extends React.Component {
           },
         });
 
-        this.props.dispatch({type: 'SHOW_REQUEST_MODAL'});
+        this.props.dispatch(makeVisible('requestModal'));
       });
     } catch(e) {throw e;}
   }
@@ -66,13 +64,14 @@ class Campaign extends React.Component {
   }
 
   render(){
+    console.log('New state is', this.props);
     const { getFieldDecorator } = this.props.form;
     const { loading, newRequest } = this.props;
-    const isRequestModalVisible = this.props.isRequestModalVisible;
+
     return(
       <PageLayout>
           <RequestModal
-            isRequestModalVisible={isRequestModalVisible}
+            isRequestModalVisible={this.props.visible.requestModal}
             handleRequestOk={() => this.handleRequestOk()}
             loading={loading}
             newRequest={newRequest}
@@ -98,9 +97,9 @@ class Campaign extends React.Component {
               </Layout.Sider>
               <Layout.Content>
                 <Card title="Campaign">
-                  <Button type={this.props.isRequestCardVisible ? "primary" : "secondary"} icon="file" onClick={() => this.showRequestForm()}>Create new request</Button>
+                  <Button type={this.props.visible.requestCard ? "primary" : "secondary"} icon="file" onClick={() => this.showRequestForm()}>Create new request</Button>
                   {/* <Button type="secondary" icon="file" onClick={() => this.showContributeForm()}>Contribute</Button> */}
-                  { this.props.isRequestCardVisible &&
+                  {this.props.visible.requestCard &&
                     <Card type="inner" title="New request">
                       <Form layout="inline">
                         <Form.Item label= "Description">
@@ -138,7 +137,6 @@ class Campaign extends React.Component {
       </PageLayout>
     );}
 }
-
 Campaign.propTypes = {
   dispatch: PropTypes.func,
   query: PropTypes.obj,
@@ -147,8 +145,6 @@ Campaign.propTypes = {
   newRequest: PropTypes.obj,
   accounts: PropTypes.arr,
   loading: PropTypes.bool,
-  isRequestCardVisible: PropTypes.bool,
-  isRequestModalVisible: PropTypes.bool,
   address: PropTypes.string,
 
 };

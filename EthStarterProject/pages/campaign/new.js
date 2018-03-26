@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PageLayout } from '../../containers';
+import { PageLayout } from '../../src/containers';
 import { Form, Input, Button, Icon, notification } from 'antd';
 import uuid from 'uuid/v1';
 
-import factory from '../../ethereum/factory';
-import web3 from '../../ethereum/web3';
+import factory from '../../src/ethereum/factory';
+import web3 from '../../src/ethereum/web3';
 class NewCampaign extends React.Component {
   constructor(props) {
     super(props);

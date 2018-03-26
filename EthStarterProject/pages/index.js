@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { nextConnect } from '../store/initStore';
+import { nextConnect } from '../src/store/initStore';
 import {Row, Button, Spin } from 'antd';
 
-import { getCampaigns } from '../actions/addFetchedCampaignsAsync';
+import { getCampaigns } from '../src/actions';
 
-import { PageLayout } from '../containers';
+import { PageLayout } from '../src/containers';
 
-import {CampaignCard} from '../wrappers';
+import {CampaignCard} from '../src/wrappers';
 
 class CampaignsIndex extends React.Component {
   async componentDidMount() {
