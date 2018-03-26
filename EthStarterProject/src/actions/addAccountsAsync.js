@@ -1,5 +1,5 @@
 export const addAccounts = accounts => ({
-  type: 'ADD_FETCHED_ACCOUNTS',
+  type: 'FETCH_ACCOUNTS',
   payload: accounts,
 });
 
