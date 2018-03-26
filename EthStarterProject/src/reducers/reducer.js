@@ -1,47 +1,49 @@
 import initialState from "../store/initialState";
+import { fromJS, Map } from 'immutable';
 
 export const reducer = (state = initialState, action) => {
-  let newState;
+  state = fromJS(state);
 
   switch(action.type) {
     case "ADD_FETCHED_CAMPAIGNS" :
-      newState = Object.assign({}, state, {campaigns: action.payload});
-      break;
+      return state
+        .set('campaigns', action.payload)
+        .toJS();
     case "SET_LOADING" :
-      newState = Object.assign({}, state, {loading: action.payload });
-      break;
+      return state
+        .set('loading', action.payload)
+        .toJS();
     case "PREPARE_REQUEST" :
-      newState = Object.assign({}, state, {newRequest: {
-        description: action.payload.requestDescription,
-        recipient: action.payload.requestRecipient,
-        value: action.payload.requestValue,
-      } });
-      break;
+      return state
+        .set('newRequest', Map({
+          description: action.payload.requestDescription,
+          recipient: action.payload.requestRecipient,
+          value: action.payload.requestValue,
+        }))
+        .toJS();
     case "FETCH_CAMPAIGN_SUMMARY" :
-      newState = Object.assign({}, state, {campaign: {
-        address: action.address,
-        balance: action.payload[0],
-        minimumContribution: action.payload[1],
-        manager: action.payload[2],
-        approversCount: action.payload[3],
-      },
-      });
-      break;
+      return state
+        .set('campaign', Map({
+          address: action.address,
+          balance: action.payload[0],
+          minimumContribution: action.payload[1],
+          manager: action.payload[2],
+          approversCount: action.payload[3],
+        }))
+        .toJS();
     case "MAKE_VISIBLE" :
-      newState = Object.assign({}, state, {visible: {
-        ...state.visible,
-        [action.elem]: action.isVisible,
-      }});
-      break;
+      return state
+      .setIn(['visible', action.elem], action.isVisible)
+      .toJS();
     case "FETCH_ACCOUNTS" :
-      newState = Object.assign({}, state, {accounts: action.payload});
-      break;
+      return state
+        .set('accounts', action.payload)
+        .toJS();
     case "NEW_ERROR" :
-    newState = Object.assign({}, state, {errors: action.payload});
-    break;
+      return state
+        .set('errors', action.payload)
+        .toJS();
     default :
-      newState = initialState;
+      return state.toJS();
   }
-
-  return newState;
 };
