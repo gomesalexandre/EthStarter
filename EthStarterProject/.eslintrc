@@ -27,7 +27,7 @@
     "quotes": 0,
     "no-console": 0,
     "no-debugger": 1,
-    "no-var": 1,
+    "no-var": 2,
     "semi": [1, "always"],
     "no-trailing-spaces": 0,
     "eol-last": 0,
@@ -38,6 +38,6 @@
     "comma-dangle": ["error", "always-multiline"],
     "arrow-spacing": 1,
     "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
-    "object-curly-spacing": ["error", "always"]
+    "object-curly-spacing": ["error", "always"],
   }
 }
