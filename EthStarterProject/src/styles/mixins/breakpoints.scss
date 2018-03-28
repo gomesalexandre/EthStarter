@@ -4,7 +4,7 @@
       @content;
     }
   }
-  @if $breakpoint == "small" {
+  @else if $breakpoint == "small" {
     @media (min-width: 767px) {
       @content;
     }
