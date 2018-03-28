@@ -5,7 +5,7 @@ const { Header } = Layout;
 
 export default (props) => (
   <div>
-    <Header>
+    <Header className="header">
       <h1 style={{ "color": "white" }}>EthStarter</h1>
     </Header>
     <Menu

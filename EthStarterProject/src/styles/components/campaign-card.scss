@@ -1,0 +1,20 @@
+.campaign-card {
+  @include isViewport(x-small) {
+    width: 80vw;
+  }
+  @include isViewport(small) {
+    width: 40vw;
+  }
+  @include isViewport(medium) {
+    width: 30vw;
+  }
+  .ant-card-head {
+    border-bottom: transparent solid 2px;
+  }
+  &:hover {
+    .ant-card-head {
+      border-bottom: $blue-main solid 2px;
+      transition: 0.4s linear fade-in;
+    }
+  }
+}
