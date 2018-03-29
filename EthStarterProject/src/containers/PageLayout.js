@@ -4,7 +4,7 @@ import stylesheet from 'antd/dist/antd.min.css';
 import style from '../styles/style.scss';
 import Header from './Header';
 import { Layout } from 'antd';
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
 
 class PageLayout extends React.Component {

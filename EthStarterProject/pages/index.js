@@ -10,9 +10,9 @@ import { PageLayout } from '../src/containers';
 import { CampaignCard } from '../src/wrappers';
 
 class CampaignsIndex extends React.Component {
-  componentDidMount() {
+  async componentDidMount() {
     // TODO: Error handling on unsuccessful campaigns fetch
-    this.props.dispatch(getCampaigns());
+    await this.props.dispatch(getCampaigns());
   }
 
   render() {

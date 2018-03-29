@@ -18,9 +18,9 @@ class Campaign extends React.Component {
     return { query };
   }
 
-  componentWillMount() {
-    this.props.dispatch(getCampaignSummary(this.props.query.address));
-    this.props.dispatch(getAccounts(web3));
+  async componentWillMount() {
+    await this.props.dispatch(getCampaignSummary(this.props.query.address));
+    await this.props.dispatch(getAccounts(web3));
   }
   showRequestForm() {
     this.props.dispatch(makeVisible('requestCard'));
@@ -97,49 +97,50 @@ class Campaign extends React.Component {
               </Layout.Sider>
               <Layout.Content>
                 {this.props.campaign.minimumContribution &&
-                  <Card title="Campaign">
-                    <Button type={this.props.visible.requestCard ? "primary" : "secondary"} icon="file" onClick={() => this.showRequestForm()}>Create new request</Button>
-                    {/* <Button type="secondary" icon="file" onClick={() => this.showContributeForm()}>Contribute</Button> */}
-                    {this.props.visible.requestCard &&
-                      <Card type="inner" title="New request">
-                        <Form layout="inline">
-                          <Form.Item label= "Description">
-                            {getFieldDecorator('requestDescription', {
-                              rules: [{ required: true, whitespace: true }],
-                              })(<Input />)
-                            }
-                          </Form.Item>
-                          <Form.Item label= "Value">
-                          {getFieldDecorator('requestValue', {
-                              rules: [{ required: true, whitespace: true }],
-                              })(<Input />)
+                <Card title="Campaign">
+                  <Button type={this.props.visible.requestCard ? "primary" : "secondary"} icon="file" onClick={() => this.showRequestForm()}>Create new request</Button>
+                  {/* <Button type="secondary" icon="file" onClick={() => this.showContributeForm()}>Contribute</Button> */}
+                  {this.props.visible.requestCard &&
+                    <Card type="inner" title="New request">
+                      <Form layout="inline">
+                        <Form.Item label= "Description">
+                          {getFieldDecorator('requestDescription', {
+                            rules: [{ required: true, whitespace: true }],
+                            })(<Input />)
                           }
-                          </Form.Item>
-                          <Form.Item label= "Recipient">
-                          {getFieldDecorator('requestRecipient', {
-                              rules: [{ required: true, whitespace: true }],
-                              })(<Input />)
-                          }
-                          </Form.Item>
-                          <Button type="primary" onClick={() => this.showRequestModal()}>Request</Button>
-                        </Form>
-                      </Card>
-                    }
-                    <Card type="inner" title="Address">{this.props.campaign.address}</Card>
-                    <Card type="inner" title="Minimum Contribution">
-                      {this.props.campaign.minimumContribution} wei ({web3.utils.fromWei(this.props.campaign.minimumContribution, 'ether')} ethers)
+                        </Form.Item>
+                        <Form.Item label= "Value">
+                        {getFieldDecorator('requestValue', {
+                            rules: [{ required: true, whitespace: true }],
+                            })(<Input />)
+                        }
+                        </Form.Item>
+                        <Form.Item label= "Recipient">
+                        {getFieldDecorator('requestRecipient', {
+                            rules: [{ required: true, whitespace: true }],
+                            })(<Input />)
+                        }
+                        </Form.Item>
+                        <Button type="primary" onClick={() => this.showRequestModal()}>Request</Button>
+                      </Form>
                     </Card>
-                    <Card type="inner" title="Manager">{this.props.campaign.manager}</Card>
-                    <Card type="inner" title="Contributers">{this.props.campaign.approversCount}</Card>
-                    {/* <Card type="inner" title="Requests">{this.props.campaign.requests}</Card> */}
+                  }
+                  <Card type="inner" title="Address">{this.props.campaign.address}</Card>
+                  <Card type="inner" title="Minimum Contribution">
+                    {this.props.campaign.minimumContribution} wei ({web3.utils.fromWei(this.props.campaign.minimumContribution, 'ether')} ethers)
                   </Card>
-                }
+                  <Card type="inner" title="Manager">{this.props.campaign.manager}</Card>
+                  <Card type="inner" title="Contributers">{this.props.campaign.approversCount}</Card>
+                  {/* <Card type="inner" title="Requests">{this.props.campaign.requests}</Card> */}
+                </Card>
+              }
               </Layout.Content>
             </Layout>
       </PageLayout>
     );}
 }
 Campaign.propTypes = {
+  visible: PropTypes.bool,
   dispatch: PropTypes.func,
   query: PropTypes.obj,
   form: PropTypes.obj,

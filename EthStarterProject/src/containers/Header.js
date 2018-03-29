@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { nextConnect } from '../store/initStore';
 import { getCurrentAccount } from '../actions';
 import web3 from '../ethereum/web3';
@@ -58,4 +59,9 @@ class PageHeader extends React.Component {
   }
 }
 
+PageHeader.propTypes = {
+  dispatch: PropTypes.func,
+  selected: PropTypes.obj,
+  web3CurrentAccount: PropTypes.string,
+};
 export default nextConnect(state => state)(PageHeader);

@@ -12,7 +12,7 @@ const output = solc.compile(source, 1).contracts;
 
 fs.ensureDirSync(buildPath); // Creating build dir if does not exist
 
-for (let contract in output)
+for (const contract in output)
 {
   fs.outputJsonSync(
     path.resolve(buildPath, `${contract}.json`.replace(':', '')), output[contract]);

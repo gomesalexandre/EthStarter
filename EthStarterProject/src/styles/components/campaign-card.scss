@@ -4,8 +4,12 @@
   margin-bottom: 20px;
 }
 .campaign-card {
-  & > * {
-    background-color: $ivory-grey !important;
+  a {
+    color: $greyish-blue !important;
+    &:hover {
+      color: darken($greyish-blue, 35%) !important;
+      transition: 0.3s linear fade-in
+    }
   }
   @include isViewport(x-small) {
     width: 80vw;
