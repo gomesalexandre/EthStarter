@@ -14,13 +14,12 @@ class PageLayout extends React.Component {
   }
   render() {
     return(
-      <Layout>
+      <Layout style={{ 'height': '100vh' }}>
         <style jsx global>{stylesheet}</style>
         <Header selected={this.props.selected}/>
-        <Content>
+        <Content className="content">
           {this.props.children}
         </Content>
-        <Footer/>
       </Layout>
   );
 }}

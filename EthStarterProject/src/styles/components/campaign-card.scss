@@ -4,6 +4,9 @@
   margin-bottom: 20px;
 }
 .campaign-card {
+  & > * {
+    background-color: $ivory-grey !important;
+  }
   @include isViewport(x-small) {
     width: 80vw;
   }
@@ -18,8 +21,8 @@
   }
   &:hover {
     .ant-card-head {
-      border-bottom: $blue-main solid 2px;
-      transition: 0.4s linear fade-in;
+      border-bottom: $border-grey solid 2px;
+      transition: 0.6s linear fade-in;
     }
   }
 }

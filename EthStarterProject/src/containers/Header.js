@@ -3,12 +3,12 @@ import { nextConnect } from '../store/initStore';
 import { getCurrentAccount } from '../actions';
 import web3 from '../ethereum/web3';
 
-import { Layout, Menu, Icon, Row, Col, notification } from 'antd';
+import { Layout, Menu, Icon, Row, Col, notification, Tag } from 'antd';
 const { Header } = Layout;
 
 class PageHeader extends React.Component {
-  async componentDidMount() {
-    this.props.dispatch(await getCurrentAccount(web3))
+  componentDidMount() {
+    this.props.dispatch(getCurrentAccount(web3))
       .catch(e => notification.error({
         message: e.message,
         description: 'Are you sure metmask is installed and unlocked ?',
@@ -26,7 +26,17 @@ class PageHeader extends React.Component {
               </Col>
               <Col span={6}>
                 <span className="header-userbar">
-                  <span className="header-userbar--address">{this.props.web3CurrentAccount && `Hello ${this.props.web3CurrentAccount}`}</span>
+                  <span className="header-userbar--address">{this.props.web3CurrentAccount &&
+                    <span>
+                      <Icon type="user"/>
+                      <Tag color="#87d068" className="header-userbar--address--tag">
+                        <a href={`http://rinkeby.etherscan.io/address/${this.props.web3CurrentAccount}`}>
+                          {this.props.web3CurrentAccount}
+                        </a>
+                      </Tag>
+                    </span>
+                    }
+                  </span>
               </span>
               </Col>
             </Row>
