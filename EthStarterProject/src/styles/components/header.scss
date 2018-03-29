@@ -1,0 +1,18 @@
+.header {
+  padding: 0;
+  &-container {
+    width: 90%;
+    margin: auto;
+  }
+  &-userbar {
+    float: right;
+  }
+  &-title {
+    display: inline;
+  }
+  &-userbar {
+    &--address {
+      color: white;
+    }
+  }
+}

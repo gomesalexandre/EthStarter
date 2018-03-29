@@ -3,7 +3,7 @@ import { Col, Card } from 'antd';
 import React from 'react';
 
 export default (address, key) => (
-    <Col key={key}>
+    <Col key={key} className="campaign-col">
       <Card
         className="campaign-card"
         title={address}

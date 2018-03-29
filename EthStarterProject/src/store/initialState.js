@@ -2,19 +2,20 @@ export default {
   campaigns: [],
   loading: false,
   newRequest: {
-    value: '0',
-    description: '',
-    recipient: '',
+    value: null,
+    description: null,
+    recipient: null,
   },
   campaign: {
-    manager: '',
-    minimumContribution: '0',
-    approversCount: 0,
-    requests: 0,
+    manager: null,
+    minimumContribution: null,
+    approversCount: null,
+    requests: null,
   },
   errors: [],
   visible: {
     requestModal: false,
     requestCard: false,
   },
+  web3CurrentAccount: null,
 };

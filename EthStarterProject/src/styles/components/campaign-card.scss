@@ -1,3 +1,8 @@
+@import "../mixins/nth";
+
+.campaign-col {
+  margin-bottom: 20px;
+}
 .campaign-card {
   @include isViewport(x-small) {
     width: 80vw;
@@ -6,7 +11,7 @@
     width: 40vw;
   }
   @include isViewport(medium) {
-    width: 30vw;
+    width: 28vw;
   }
   .ant-card-head {
     border-bottom: transparent solid 2px;

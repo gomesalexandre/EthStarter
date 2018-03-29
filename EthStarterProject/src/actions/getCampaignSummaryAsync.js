@@ -1,8 +1,4 @@
 import CampaignInstance from '../ethereum/campaign';
-export const addCampaignSummary = summary => ({
-  type: 'FETCH_CAMPAIGN_SUMMARY',
-  payload: summary,
-});
 
 export function getCampaignSummary(address) {
   return async function action(dispatch) {

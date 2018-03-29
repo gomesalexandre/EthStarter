@@ -4,6 +4,7 @@ import { createRequest } from './createRequestAsync';
 import { getCampaignSummary } from './getCampaignSummaryAsync';
 import { makeVisible } from './makeVisible';
 import { setLoading } from './setLoading';
+import { getCurrentAccount } from './getCurrentAccount';
 
 export {
   getAccounts,
@@ -12,4 +13,5 @@ export {
   createRequest,
   makeVisible,
   setLoading,
+  getCurrentAccount,
 };

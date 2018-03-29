@@ -43,6 +43,10 @@ export const reducer = (state = initialState, action) => {
       return state
         .set('errors', action.payload)
         .toJS();
+    case "ACCOUNT_INFO_REQUESTED" :
+        return state
+          .set('web3CurrentAccount', action.payload)
+          .toJS();
     default :
       return state.toJS();
   }

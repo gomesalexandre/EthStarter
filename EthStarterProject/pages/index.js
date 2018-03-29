@@ -18,13 +18,15 @@ class CampaignsIndex extends React.Component {
   render() {
     return(
       <PageLayout selected="campaigns">
-        <h1 style={{ "textAlign" : "center" }}>Opened campaigns</h1>
-        <Row type="flex" justify="center">
-          {!this.props.loading ? this.props.campaigns.map( (campaignAddress, i) => CampaignCard(campaignAddress, i)) : <Spin size="large" />}
-        </Row>
-        <Row type="flex" justify="left">
-          <Button type="primary">Create a campaign</Button>
-        </Row>
+        <div className="landing-content">
+          <h1 style={{ "textAlign" : "center" }}>Opened campaigns</h1>
+          <Row type="flex" justify="space-between" className="landing-row">
+            {!this.props.loading ? this.props.campaigns.map( (campaignAddress, i) => CampaignCard(campaignAddress, i)) : <Spin size="large" />}
+          </Row>
+          <Row type="flex" justify="left">
+            <Button type="primary">Create a campaign</Button>
+          </Row>
+        </div>
       </PageLayout>
   );
 }}

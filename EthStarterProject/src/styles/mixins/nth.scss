@@ -1,0 +1,10 @@
+@mixin not-first-last-child() {
+  &:not(:last-child):not(:first-child) {
+    @content;
+  }
+}
+@mixin first-last-child($selector) {
+  &#{selector}:first-child, &#{selector}:last-child {
+    @content;
+  }
+}
