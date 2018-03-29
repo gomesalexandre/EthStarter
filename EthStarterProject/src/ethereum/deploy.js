@@ -20,4 +20,7 @@ const deploy = async () => {
   await fs.writeFile('./ethereum/factoryAddress.js', `module.exports = ${JSON.stringify({ address: deployedContract.options.address })}`, 'utf-8');
   console.log('Contract deployed to', deployedContract.options.address);
 };
-deploy();
+
+try {
+  deploy();
+} catch(e) {console.error(e);}
