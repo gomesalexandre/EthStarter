@@ -32,6 +32,7 @@ const ProviderDownloadCards = () => (
         hoverable
         style={{ width: 240 }}
         title="Install Brave"
+        className="provider-card"
       >
       <img alt="Brave logo" src="/static/brave-logo.svg" style={{ 'width': '80%' }}/>
       <section className="provider-card--text">
@@ -43,6 +44,7 @@ const ProviderDownloadCards = () => (
         hoverable
         style={{ width: 240 }}
         title="Install Cipher"
+        className="provider-card"
       >
       <img alt="Cipher logo" src="/static/cipher-logo.png" style={{ 'width': '80%' }}/>
       <section className="provider-card--text">
@@ -54,6 +56,7 @@ const ProviderDownloadCards = () => (
         hoverable
         style={{ width: 240 }}
         title="Install Status"
+        className="provider-card"
       >
       <img alt="Status logo" src="/static/status-logo.png" style={{ 'width': '80%' }}/>
       <section className="provider-card--text">
