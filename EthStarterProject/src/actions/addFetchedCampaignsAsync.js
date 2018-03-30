@@ -1,8 +1,9 @@
+import { actionTypes } from '../actions';
 import { setLoading } from './setLoading';
 import factory from '../ethereum/factory';
 
 export const addCampaigns = campaigns => ({
-  type: 'ADD_FETCHED_CAMPAIGNS',
+  type: actionTypes.ADD_FETCHED_CAMPAIGNS,
   payload: campaigns,
 });
 

@@ -1,6 +1,8 @@
+import { actionTypes } from ".";
+
 export function makeVisible(elem) {
   return {
-    type: "MAKE_VISIBLE",
+    type: actionTypes.MAKE_VISIBLE,
     isVisible: true,
     elem,
   };

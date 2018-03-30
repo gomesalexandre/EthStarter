@@ -11,6 +11,7 @@ class NewCampaign extends React.Component {
     super(props);
     this.state = { newCampaigns: {}, loading: false, minWei: 0 };
   }
+  static displayName = "New Campaign";
   handleSubmit = async e => {
     e.preventDefault();
     this.setState({ loading: true });

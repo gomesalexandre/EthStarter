@@ -1,7 +1,8 @@
+import { actionTypes } from '../actions';
 import CampaignInstance from '../ethereum/campaign';
 
 const addCampaignSummary = (campaignSummary, address) => ({
-  type: 'FETCH_CAMPAIGN_SUMMARY',
+  type: actionTypes.FETCH_CAMPAIGN_SUMMARY,
   payload: campaignSummary,
   address,
 });

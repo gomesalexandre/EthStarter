@@ -5,7 +5,7 @@ import { getCampaignSummary } from './getCampaignSummaryAsync';
 import { makeVisible } from './makeVisible';
 import { setLoading } from './setLoading';
 import { getCurrentAccount } from './getCurrentAccount';
-
+import { actionTypes } from './types';
 export {
   getAccounts,
   getCampaigns,
@@ -14,4 +14,5 @@ export {
   makeVisible,
   setLoading,
   getCurrentAccount,
+  actionTypes,
 };

@@ -1,6 +1,7 @@
+import { actionTypes } from '../actions';
 export function setLoading(isLoading) {
   return {
-    type: "SET_LOADING",
+    type: actionTypes.SET_LOADING,
     payload: isLoading,
   };
 }

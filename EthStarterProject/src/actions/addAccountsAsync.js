@@ -1,5 +1,7 @@
+import { actionTypes } from '../actions';
+
 export const addAccounts = accounts => ({
-  type: 'FETCH_ACCOUNTS',
+  type: actionTypes.FETCH_ACCOUNTS,
   payload: accounts,
 });
 
