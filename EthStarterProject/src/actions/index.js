@@ -1,3 +1,5 @@
+import { actionTypes } from './types';
+
 import { getAccounts } from './addAccountsAsync';
 import { getCampaigns } from './addFetchedCampaignsAsync';
 import { createRequest } from './createRequestAsync';
@@ -6,8 +8,10 @@ import { makeVisible } from './makeVisible';
 import { makeInvisible } from './makeInvisible';
 import { setLoading } from './setLoading';
 import { getCurrentAccount } from './getCurrentAccount';
-import { actionTypes } from './types';
+import { getNetwork } from './getNetworkAsync';
+
 export {
+  actionTypes,
   getAccounts,
   getCampaigns,
   getCampaignSummary,
@@ -16,5 +20,5 @@ export {
   makeInvisible,
   setLoading,
   getCurrentAccount,
-  actionTypes,
+  getNetwork,
 };

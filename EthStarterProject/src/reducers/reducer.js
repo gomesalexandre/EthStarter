@@ -51,6 +51,10 @@ export const reducer = (state = initialState, action) => {
         return state
           .set('web3CurrentAccount', action.payload)
           .toJS();
+     case "NETWORK_INFO_REQUESTED" :
+        return state
+          .set('web3CurrentNetwork', action.payload)
+          .toJS();
     default :
       return state.toJS();
   }

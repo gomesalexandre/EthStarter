@@ -14,7 +14,7 @@ class PageLayout extends React.Component {
   }
   render() {
     return(
-      <Layout style={{ 'height': '100vh' }}>
+      <Layout>
         <style jsx global>{stylesheet}</style>
         <Header selected={this.props.selected}/>
         <Content className="content">

@@ -12,10 +12,10 @@ export default {
     approversCount: null,
     requests: null,
   },
-  errors: [],
   visible: {
     requestModal: false,
     requestCard: false,
   },
+  web3CurrentNetwork: null,
   web3CurrentAccount: null,
 };

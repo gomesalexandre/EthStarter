@@ -1,6 +1,31 @@
 .landing {
+  h2 {
+    color: $jaguar-dark;
+  }
   &-content {
     width: 100%;
+    .section-opened_campaigns {
+      height: 100vh;
+    }
+    .section-no_provider {
+      height: 100vh;
+      text-align: center;
+      .provider-card {
+        padding-bottom: 150px;
+        &--text {
+          width: 100%;
+          position: absolute;
+          margin-top: 200px;
+          top: 100px;
+          justify-items: center;
+          left: 50%;
+          p {
+            position: relative;
+            left: -50%;
+          }
+        }
+      }
+    }
   }
   &-row {
     width: 90%;

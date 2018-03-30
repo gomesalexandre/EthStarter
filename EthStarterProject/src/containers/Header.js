@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { nextConnect } from '../store/initStore';
-import { getCurrentAccount } from '../actions';
+import { getCurrentAccount, getNetwork } from '../actions';
 import web3 from '../ethereum/web3';
 
 import { Layout, Menu, Icon, Row, Col, notification, Tag } from 'antd';
@@ -15,7 +15,13 @@ class PageHeader extends React.Component {
         description: 'Are you sure metmask is installed and unlocked ?',
         duration: 0,
         }));
-  }
+    this.props.dispatch(getNetwork(web3))
+      .catch(e => notification.error({
+        message: e.message,
+        description: 'Are you sure metmask is installed and unlocked ?',
+        duration: 0,
+        }));
+    }
   render() {
     return (
       <div>
@@ -25,17 +31,23 @@ class PageHeader extends React.Component {
               <Col span={6}>
                 <h1 style={{ "color": "white" }} className="header-title">EthStarter</h1>
               </Col>
-              <Col span={6}>
+              <Col span={12}>
                 <span className="header-userbar">
                   <span className="header-userbar--address">{this.props.web3CurrentAccount &&
                     <span>
-                      <Icon type="user"/>
+                      <Icon type="user" />
                       <Tag color="#87d068" className="header-userbar--address--tag">
                         <a href={`http://rinkeby.etherscan.io/address/${this.props.web3CurrentAccount}`}>
                           {this.props.web3CurrentAccount}
                         </a>
                       </Tag>
                     </span>
+                    }
+                  </span>
+                  <span className="header-userbar--network">{this.props.web3CurrentNetwork &&
+                    <Tag color="green" className="header-userbar--network--tag">
+                      {this.props.web3CurrentNetwork}
+                    </Tag>
                     }
                   </span>
               </span>
