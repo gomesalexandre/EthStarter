@@ -43,17 +43,20 @@ class PageHeader extends React.Component {
             </Row>
           </div>
         </Header>
-        <Menu
-        selectedKeys={[this.props.selected]}
-        mode="horizontal"
-        >
-          <Menu.Item key="new">
-          <a href="/campaign/new"><Icon type="file-add" />New Campaign</a>
-          </Menu.Item>
-          <Menu.Item key="campaigns">
-            <a href="/" ><Icon type="appstore" />Campaigns</a>
-          </Menu.Item>
-        </Menu>
+        <div className="navbar">
+          <Menu
+          selectedKeys={[this.props.selected]}
+          mode="horizontal"
+          className="navbar-menu"
+          >
+            <Menu.Item key="new">
+              <a href="/campaign/new"><Icon type="file-add" />New Campaign</a>
+            </Menu.Item>
+            <Menu.Item key="campaigns">
+              <a href="/" ><Icon type="appstore" />Campaigns</a>
+            </Menu.Item>
+          </Menu>
+        </div>
       </div>
     );
   }

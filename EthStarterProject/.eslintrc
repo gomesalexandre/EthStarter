@@ -39,9 +39,10 @@
     "arrow-spacing": 1,
     "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
     "object-curly-spacing": ["error", "always"],
-      "prefer-const": ["error", {
-          "destructuring": "any",
-          "ignoreReadBeforeAssign": false
-      }]
+    "prefer-const": ["error", {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+    }],
+    "react/no-unknown-property": 2
   }
 }
