@@ -24,7 +24,7 @@ class PageHeader extends React.Component {
     }
   render() {
     return (
-      <div>
+      <>
         <Header className="header">
           <div className="header-container">
             <Row type="flex" justify="space-between">
@@ -69,7 +69,7 @@ class PageHeader extends React.Component {
             </Menu.Item>
           </Menu>
         </div>
-      </div>
+      </>
     );
   }
 }

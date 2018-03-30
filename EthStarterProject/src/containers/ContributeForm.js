@@ -10,26 +10,26 @@ class ContributeForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return(
       <Form onSubmit={this.handleSubmit}>
-      <Form.Item>
-        <span>
-          {getFieldDecorator('minEth', {
-            rules: [{ required: true, message: 'Amount to contribute', whitespace: true }],
-            })(<Input />)
-          }
-          <Select
-          value={this.props.currency || 'ether'}
-          size={2}
-          style={{ width: '32%' }}
-          >
-            <Select.Option value="wei">wei</Select.Option>
-            <Select.Option value="ether">ether</Select.Option>
-          </Select>
-        </span>
-      </Form.Item>
-      <Button type="primary" htmlType="submit">
-      {this.props.loading ? <Icon type="loading" /> : 'Submit'}
-      </Button>
-    </Form>
+        <Form.Item>
+          <span>
+            {getFieldDecorator('minEth', {
+              rules: [{ required: true, message: 'Amount to contribute', whitespace: true }],
+              })(<Input />)
+            }
+            <Select
+            value={this.props.currency || 'ether'}
+            size={2}
+            style={{ width: '32%' }}
+            >
+              <Select.Option value="wei">wei</Select.Option>
+              <Select.Option value="ether">ether</Select.Option>
+            </Select>
+          </span>
+        </Form.Item>
+        <Button type="primary" htmlType="submit">
+        {this.props.loading ? <Icon type="loading" /> : 'Submit'}
+        </Button>
+      </Form>
     );
   }
 }
