@@ -35,6 +35,10 @@ export const reducer = (state = initialState, action) => {
       return state
       .setIn(['visible', action.elem], action.isVisible)
       .toJS();
+    case "MAKE_INVISIBLE" :
+    return state
+    .setIn(['visible', action.elem], action.isVisible)
+    .toJS();
     case "FETCH_ACCOUNTS" :
       return state
         .set('accounts', action.payload)

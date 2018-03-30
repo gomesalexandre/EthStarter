@@ -8,6 +8,7 @@ const RequestModal = props => (
           visible={props.isRequestModalVisible}
           title="New Request"
           onOk={props.handleRequestOk}
+          onCancel={props.handleRequestCancel}
           okText={props.loading ? <Icon type="loading" /> : 'Request'}
           >
           <List

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import web3 from '../../src/ethereum/web3';
 import { Card, Button, Layout, Menu, Form, Input, notification, Icon } from 'antd';
 import { nextConnect } from '../../src/store/initStore';
-import { createRequest, getAccounts, getCampaignSummary, makeVisible } from '../../src/actions';
+import { createRequest, getAccounts, getCampaignSummary, makeVisible, makeInvisible } from '../../src/actions';
 import { PageLayout } from '../../src/containers';
 import { RequestModal, BreadCrumb } from '../../src/wrappers';
 
@@ -44,6 +44,9 @@ class Campaign extends React.Component {
       });
     } catch(e) {throw e;}
   }
+  hideRequestModal() {
+    this.props.dispatch(makeInvisible('requestModal'));
+  }
   async handleRequestOk() {
     try {
       await this.props.dispatch(createRequest(this.props.campaign.address, this.props.newRequest, this.props.accounts[0]));
@@ -73,6 +76,7 @@ class Campaign extends React.Component {
           <RequestModal
             isRequestModalVisible={this.props.visible.requestModal}
             handleRequestOk={() => this.handleRequestOk()}
+            handleRequestCancel={() => this.hideRequestModal()}
             loading={loading}
             newRequest={newRequest}
           />
