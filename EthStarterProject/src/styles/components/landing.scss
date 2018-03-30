@@ -4,12 +4,18 @@
   }
   &-content {
     width: 100%;
+    .ethereum-logo {
+      height: 150px;
+    }
     .section-opened_campaigns {
-      height: 100vh;
+      min-height: 100vh;
     }
     .section-no_provider {
-      height: 100vh;
+      min-height: 100vh;
       text-align: center;
+      &--text {
+        margin: 1.5% 0 1.5% 0;
+      }
       .provider-card {
         padding-bottom: 150px;
         &--text {

@@ -3,15 +3,18 @@ import { Card, Row } from 'antd';
 
 const ProviderDownloadCards = () => (
   <div className="section-no_provider">
-    <h2>Cannot connect to the ethereum network :(</h2>
-    <p>
-      This is a √êApp: It is built on the Ethereum blockchain using smart contracts.
-      To interact with it, you need a browser that supports web3
-    </p>
-    <p>
-      Don't worry, we've injected a web3 provider, so you'll be able to see the site but with limited functionnalities.
-      You can still see the deployed campaigns, but not create any nor contribute to them.
-    </p>
+    <img alt="Ethereum logo" src="/static/ethereum-logo.svg" className="ethereum-logo" />
+    <div className="section-no_provider--text">
+      <h2>Cannot connect to the ethereum network :(</h2>
+      <p>
+        This is a <strong>ÐApp</strong>: It is built on the Ethereum blockchain using smart contracts.
+        To interact with it, you need a browser that supports web3
+      </p>
+      <p>
+        Don't worry, we've injected a web3 provider, so you'll be able to see the site but with limited functionnalities.
+        You can still see the deployed campaigns, but not create any nor contribute to them.
+      </p>
+    </div>
     <Row type="flex" justify="space-around" className="landing-row">
       <Card
         hoverable
