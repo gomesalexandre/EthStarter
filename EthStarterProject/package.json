@@ -6,8 +6,8 @@
   "scripts": {
     "test": "mocha",
     "dev": "DEBUG=express:* node server.js",
-    "compile": "node ethereum/compile.js",
-    "deploy": "node ethereum/deploy.js"
+    "compile": "node src/ethereum/compile.js",
+    "deploy": "node src/ethereum/deploy.js"
   },
   "author": "",
   "license": "ISC",
