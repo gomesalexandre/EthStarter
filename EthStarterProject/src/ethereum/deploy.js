@@ -17,7 +17,7 @@ const deploy = async () => {
     .deploy({ data: compiledFactory.bytecode })
     .send({ gas: '1000000', from: accounts[0] });
 
-  await fs.writeFile('./ethereum/factoryAddress.js', `module.exports = ${JSON.stringify({ address: deployedContract.options.address })}`, 'utf-8');
+  await fs.writeFile('./factoryAddress.js', `module.exports = ${JSON.stringify({ address: deployedContract.options.address })}`, 'utf-8');
   console.log('Contract deployed to', deployedContract.options.address);
 };
 
