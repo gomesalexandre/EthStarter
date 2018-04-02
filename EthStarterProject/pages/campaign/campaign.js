@@ -72,75 +72,79 @@ class Campaign extends React.Component {
     const { loading, newRequest } = this.props;
 
     return(
-      <PageLayout>
-          <RequestModal
-            isRequestModalVisible={this.props.visible.requestModal}
-            handleRequestOk={() => this.handleRequestOk()}
-            handleRequestCancel={() => this.hideRequestModal()}
-            loading={loading}
-            newRequest={newRequest}
-          />
-            <BreadCrumb path={[
-              { title: 'Campaigns', url: 'http://foo.bar' },
-              { title: this.props.query.address, url:'http://foo.bar' },
-               ]}/>
-            <Layout style={{ "padding": "0 50px" }}>
-             <Layout.Sider width={200} style={{ background: '#fff' }}>
-                <Menu
-                  mode="inline"
-                  defaultSelectedKeys={['1']}
-                  defaultOpenKeys={['sub1']}
-                  style={{ height: '100%' }}
-                >
-                  {/* <Menu.SubMenu key="requests" requests={() => this.props.requests}title={<span>Requests</span>}>
-                    {[1,2,].map((x,i) => ( //TODO: Get actual requests !
-                      <Menu.Item key={i} >Request number here</Menu.Item>
-                    ))}
-                  </Menu.SubMenu> */}
-                </Menu>
-              </Layout.Sider>
-              <Layout.Content>
-                {this.props.campaign.minimumContribution &&
-                <Card title="Campaign">
-                  <Button type={this.props.visible.requestCard ? "primary" : "secondary"} icon="file" onClick={() => this.showRequestForm()}>Create new request</Button>
-                  {/* <Button type="secondary" icon="file" onClick={() => this.showContributeForm()}>Contribute</Button> */}
-                  {this.props.visible.requestCard &&
-                    <Card type="inner" title="New request">
-                      <Form layout="inline">
-                        <Form.Item label= "Description">
-                          {getFieldDecorator('requestDescription', {
-                            rules: [{ required: true, whitespace: true }],
-                            })(<Input />)
+      <div className="campaign">
+        <PageLayout style={{ height:"100vh" }}>
+            <RequestModal
+              isRequestModalVisible={this.props.visible.requestModal}
+              handleRequestOk={() => this.handleRequestOk()}
+              handleRequestCancel={() => this.hideRequestModal()}
+              loading={loading}
+              newRequest={newRequest}
+            />
+              <div className="campaign-breadcrumb">
+                <BreadCrumb path={[
+                  { title: 'Campaigns', url: 'http://foo.bar' },
+                  { title: this.props.query.address, url:'http://foo.bar' },
+                  ]} />
+              </div>
+              <Layout style={{ margin: "auto", width: "90%" }}>
+              <Layout.Sider width={200} style={{ background: '#fff' }}>
+                  <Menu
+                    mode="inline"
+                    defaultSelectedKeys={['1']}
+                    defaultOpenKeys={['sub1']}
+                    style={{ height: '100%' }}
+                  >
+                    {/* <Menu.SubMenu key="requests" requests={() => this.props.requests}title={<span>Requests</span>}>
+                      {[1,2,].map((x,i) => ( //TODO: Get actual requests !
+                        <Menu.Item key={i} >Request number here</Menu.Item>
+                      ))}
+                    </Menu.SubMenu> */}
+                  </Menu>
+                </Layout.Sider>
+                <Layout.Content>
+                  {this.props.campaign.minimumContribution &&
+                  <Card title="Campaign">
+                    <Button type={this.props.visible.requestCard ? "primary" : "secondary"} icon="file" onClick={() => this.showRequestForm()}>Create new request</Button>
+                    {/* <Button type="secondary" icon="file" onClick={() => this.showContributeForm()}>Contribute</Button> */}
+                    {this.props.visible.requestCard &&
+                      <Card type="inner" title="New request">
+                        <Form layout="inline">
+                          <Form.Item label= "Description">
+                            {getFieldDecorator('requestDescription', {
+                              rules: [{ required: true, whitespace: true }],
+                              })(<Input />)
+                            }
+                          </Form.Item>
+                          <Form.Item label= "Value">
+                          {getFieldDecorator('requestValue', {
+                              rules: [{ required: true, whitespace: true }],
+                              })(<Input />)
                           }
-                        </Form.Item>
-                        <Form.Item label= "Value">
-                        {getFieldDecorator('requestValue', {
-                            rules: [{ required: true, whitespace: true }],
-                            })(<Input />)
-                        }
-                        </Form.Item>
-                        <Form.Item label= "Recipient">
-                        {getFieldDecorator('requestRecipient', {
-                            rules: [{ required: true, whitespace: true }],
-                            })(<Input />)
-                        }
-                        </Form.Item>
-                        <Button type="primary" onClick={() => this.showRequestModal()}>Request</Button>
-                      </Form>
+                          </Form.Item>
+                          <Form.Item label= "Recipient">
+                          {getFieldDecorator('requestRecipient', {
+                              rules: [{ required: true, whitespace: true }],
+                              })(<Input />)
+                          }
+                          </Form.Item>
+                          <Button type="primary" onClick={() => this.showRequestModal()}>Request</Button>
+                        </Form>
+                      </Card>
+                    }
+                    <Card type="inner" title="Address">{this.props.campaign.address}</Card>
+                    <Card type="inner" title="Minimum Contribution">
+                      {this.props.campaign.minimumContribution} wei ({web3.utils.fromWei(this.props.campaign.minimumContribution, 'ether')} ethers)
                     </Card>
-                  }
-                  <Card type="inner" title="Address">{this.props.campaign.address}</Card>
-                  <Card type="inner" title="Minimum Contribution">
-                    {this.props.campaign.minimumContribution} wei ({web3.utils.fromWei(this.props.campaign.minimumContribution, 'ether')} ethers)
+                    <Card type="inner" title="Manager">{this.props.campaign.manager}</Card>
+                    <Card type="inner" title="Contributers">{this.props.campaign.approversCount}</Card>
+                    {/* <Card type="inner" title="Requests">{this.props.campaign.requests}</Card> */}
                   </Card>
-                  <Card type="inner" title="Manager">{this.props.campaign.manager}</Card>
-                  <Card type="inner" title="Contributers">{this.props.campaign.approversCount}</Card>
-                  {/* <Card type="inner" title="Requests">{this.props.campaign.requests}</Card> */}
-                </Card>
-              }
-              </Layout.Content>
-            </Layout>
-      </PageLayout>
+                }
+                </Layout.Content>
+              </Layout>
+        </PageLayout>
+      </div>
     );}
 }
 Campaign.propTypes = {

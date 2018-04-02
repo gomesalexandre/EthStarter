@@ -1,5 +1,9 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
 @import "nav";
 @import "header";
 @import "campaign-card";
 @import "landing";
 @import "content";
+@import "campaign";
