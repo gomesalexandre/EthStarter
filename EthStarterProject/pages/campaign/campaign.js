@@ -1,4 +1,5 @@
 import React from 'react';
+import { getVisibleSelector, getCampaignSelector, getNewRequestSelector, getAccountsSelector } from '../../src/store/selectors';
 import Router from 'next/router';
 import PropTypes from 'prop-types';
 import web3 from '../../src/ethereum/web3';
@@ -150,14 +151,20 @@ class Campaign extends React.Component {
 Campaign.propTypes = {
   visible: PropTypes.bool,
   dispatch: PropTypes.func,
-  query: PropTypes.obj,
-  form: PropTypes.obj,
-  campaign: PropTypes.obj,
-  newRequest: PropTypes.obj,
-  accounts: PropTypes.arr,
+  query: PropTypes.object,
+  form: PropTypes.object,
+  campaign: PropTypes.object,
+  newRequest: PropTypes.object,
+  accounts: PropTypes.array,
   loading: PropTypes.bool,
   address: PropTypes.string,
 
 };
 const ParsedCampaign = Form.create({})(Campaign);
-export default nextConnect(state => state)(ParsedCampaign);
+
+export default nextConnect(state => ({
+  visible: getVisibleSelector(state),
+  campaign: getCampaignSelector(state),
+  newRequest: getNewRequestSelector(state),
+  accounts: getAccountsSelector(state),
+}))(ParsedCampaign);

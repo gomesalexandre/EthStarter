@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { nextConnect } from '../src/store/initStore';
-import { Row, Button, Spin, Card } from 'antd';
+import { Row, Button, Spin } from 'antd';
 
 import { getCampaigns } from '../src/actions';
+import { getLoadingSelector, getCurrentAccountSelector, getCampaignsSelector } from '../src/store/selectors';
 
 import { PageLayout } from '../src/containers';
 import { CampaignCard } from '../src/wrappers';
@@ -41,4 +42,8 @@ CampaignsIndex.propTypes = {
   loading: PropTypes.bool,
   campaigns: PropTypes.array,
 };
-export default nextConnect(state => state)(CampaignsIndex);
+export default nextConnect(state => ({
+  loading: getLoadingSelector(state),
+  web3CurrentAccount: getCurrentAccountSelector(state),
+  campaigns: getCampaignsSelector(state),
+}))(CampaignsIndex);

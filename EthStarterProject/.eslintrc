@@ -43,6 +43,7 @@
         "destructuring": "any",
         "ignoreReadBeforeAssign": false
     }],
-    "react/no-unknown-property": 2
+    "react/no-unknown-property": 2,
+    "react/jsx-indent-props": [2, 2],
   }
 }
