@@ -45,5 +45,6 @@
     }],
     "react/no-unknown-property": 2,
     "react/jsx-indent-props": [2, 2],
+    "indent": ["error", 2, { "MemberExpression": 1 }]
   }
 }

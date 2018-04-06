@@ -27,15 +27,15 @@ class CampaignsIndex extends React.Component {
             <h2 style={{ "textAlign" : "center" }}>Opened campaigns</h2>
             <Row type="flex" justify="space-between" className="landing-row">
               {!this.props.loading ? this.props.campaigns.map( (campaignAddress, i) => CampaignCard(campaignAddress, i)) : <Spin size="large" />}
-              </Row>
-              <Row type="flex" justify="left">
-                <Button type="primary">Create a campaign</Button>
-              </Row>
+            </Row>
+            <Row type="flex" justify="left">
+              <Button type="primary">Create a campaign</Button>
+            </Row>
           </div>
         </div>
       </PageLayout>
-  );
-}}
+    );
+  }}
 
 CampaignsIndex.propTypes = {
   dispatch: PropTypes.func,

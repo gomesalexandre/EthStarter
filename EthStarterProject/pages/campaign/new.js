@@ -43,19 +43,19 @@ class NewCampaign extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return(
-        <div>
+      <div>
         <Form onSubmit={this.handleSubmit}>
           <Form.Item>
             {getFieldDecorator('minWei', {
               rules: [{ required: true, message: 'Minimum Wei to contribute', whitespace: true }],
-              })(<Input />)
+            })(<Input />)
             }
           </Form.Item>
           <Button type="primary" htmlType="submit">
-          {this.state.loading ? <Icon type="loading" /> : 'Submit'}
+            {this.state.loading ? <Icon type="loading" /> : 'Submit'}
           </Button>
         </Form>
-        </div>
+      </div>
     );
   }
 }
@@ -67,6 +67,6 @@ const NewCampaignForm = Form.create({})(NewCampaign);
 export default () => (
   <PageLayout selected="new">
     <h3>Create a new campaign</h3>
-      <NewCampaignForm/>
+    <NewCampaignForm/>
   </PageLayout>
 );

@@ -14,12 +14,12 @@ class ContributeForm extends React.Component {
           <span>
             {getFieldDecorator('minEth', {
               rules: [{ required: true, message: 'Amount to contribute', whitespace: true }],
-              })(<Input />)
+            })(<Input />)
             }
             <Select
-            value={this.props.currency || 'ether'}
-            size={2}
-            style={{ width: '32%' }}
+              value={this.props.currency || 'ether'}
+              size={2}
+              style={{ width: '32%' }}
             >
               <Select.Option value="wei">wei</Select.Option>
               <Select.Option value="ether">ether</Select.Option>
@@ -27,7 +27,7 @@ class ContributeForm extends React.Component {
           </span>
         </Form.Item>
         <Button type="primary" htmlType="submit">
-        {this.props.loading ? <Icon type="loading" /> : 'Submit'}
+          {this.props.loading ? <Icon type="loading" /> : 'Submit'}
         </Button>
       </Form>
     );

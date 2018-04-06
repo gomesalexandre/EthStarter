@@ -60,10 +60,10 @@ class Campaign extends React.Component {
 
       Router.push(`/campaign/${this.props.address}`);
     } catch(e) {
-        notification.error({
+      notification.error({
         message: 'Tx failed',
         description: e.message,
-        });
+      });
     }
   }
 
@@ -75,36 +75,36 @@ class Campaign extends React.Component {
     return(
       <div className="campaign">
         <PageLayout style={{ height:"100vh" }}>
-            <RequestModal
-              isRequestModalVisible={this.props.visible.requestModal}
-              handleRequestOk={() => this.handleRequestOk()}
-              handleRequestCancel={() => this.hideRequestModal()}
-              loading={loading}
-              newRequest={newRequest}
-            />
-              <div className="campaign-breadcrumb">
-                <BreadCrumb path={[
-                  { title: 'Campaigns', url: 'http://foo.bar' },
-                  { title: this.props.query.address, url:'http://foo.bar' },
-                  ]} />
-              </div>
-              <Layout style={{ margin: "auto", width: "90%" }}>
-              <Layout.Sider width={200} style={{ background: '#fff' }}>
-                  <Menu
-                    mode="inline"
-                    defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
-                    style={{ height: '100%' }}
-                  >
-                    {/* <Menu.SubMenu key="requests" requests={() => this.props.requests}title={<span>Requests</span>}>
+          <RequestModal
+            isRequestModalVisible={this.props.visible.requestModal}
+            handleRequestOk={() => this.handleRequestOk()}
+            handleRequestCancel={() => this.hideRequestModal()}
+            loading={loading}
+            newRequest={newRequest}
+          />
+          <div className="campaign-breadcrumb">
+            <BreadCrumb path={[
+              { title: 'Campaigns', url: 'http://foo.bar' },
+              { title: this.props.query.address, url:'http://foo.bar' },
+            ]} />
+          </div>
+          <Layout style={{ margin: "auto", width: "90%" }}>
+            <Layout.Sider width={200} style={{ background: '#fff' }}>
+              <Menu
+                mode="inline"
+                defaultSelectedKeys={['1']}
+                defaultOpenKeys={['sub1']}
+                style={{ height: '100%' }}
+              >
+                {/* <Menu.SubMenu key="requests" requests={() => this.props.requests}title={<span>Requests</span>}>
                       {[1,2,].map((x,i) => ( //TODO: Get actual requests !
                         <Menu.Item key={i} >Request number here</Menu.Item>
                       ))}
                     </Menu.SubMenu> */}
-                  </Menu>
-                </Layout.Sider>
-                <Layout.Content>
-                  {this.props.campaign.minimumContribution &&
+              </Menu>
+            </Layout.Sider>
+            <Layout.Content>
+              {this.props.campaign.minimumContribution &&
                   <Card title="Campaign">
                     <Button type={this.props.visible.requestCard ? "primary" : "secondary"} icon="file" onClick={() => this.showRequestForm()}>Create new request</Button>
                     {/* <Button type="secondary" icon="file" onClick={() => this.showContributeForm()}>Contribute</Button> */}
@@ -114,20 +114,20 @@ class Campaign extends React.Component {
                           <Form.Item label= "Description">
                             {getFieldDecorator('requestDescription', {
                               rules: [{ required: true, whitespace: true }],
-                              })(<Input />)
+                            })(<Input />)
                             }
                           </Form.Item>
                           <Form.Item label= "Value">
-                          {getFieldDecorator('requestValue', {
+                            {getFieldDecorator('requestValue', {
                               rules: [{ required: true, whitespace: true }],
-                              })(<Input />)
-                          }
+                            })(<Input />)
+                            }
                           </Form.Item>
                           <Form.Item label= "Recipient">
-                          {getFieldDecorator('requestRecipient', {
+                            {getFieldDecorator('requestRecipient', {
                               rules: [{ required: true, whitespace: true }],
-                              })(<Input />)
-                          }
+                            })(<Input />)
+                            }
                           </Form.Item>
                           <Button type="primary" onClick={() => this.showRequestModal()}>Request</Button>
                         </Form>
@@ -141,9 +141,9 @@ class Campaign extends React.Component {
                     <Card type="inner" title="Contributers">{this.props.campaign.approversCount}</Card>
                     {/* <Card type="inner" title="Requests">{this.props.campaign.requests}</Card> */}
                   </Card>
-                }
-                </Layout.Content>
-              </Layout>
+              }
+            </Layout.Content>
+          </Layout>
         </PageLayout>
       </div>
     );}

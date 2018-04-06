@@ -34,11 +34,11 @@ const ProviderDownloadCards = () => (
         title="Install Brave"
         className="provider-card"
       >
-      <img alt="Brave logo" src="/static/brave-logo.svg" style={{ 'width': '80%' }}/>
-      <section className="provider-card--text">
-        <p>Brave is a cool browser made for the web of tomorrow, with integrated Metamask</p>
-        <p>Download it <a href="https://brave.com/">here</a></p>
-      </section>
+        <img alt="Brave logo" src="/static/brave-logo.svg" style={{ 'width': '80%' }}/>
+        <section className="provider-card--text">
+          <p>Brave is a cool browser made for the web of tomorrow, with integrated Metamask</p>
+          <p>Download it <a href="https://brave.com/">here</a></p>
+        </section>
       </Card>
       <Card
         hoverable
@@ -46,11 +46,11 @@ const ProviderDownloadCards = () => (
         title="Install Cipher"
         className="provider-card"
       >
-      <img alt="Cipher logo" src="/static/cipher-logo.png" style={{ 'width': '80%' }}/>
-      <section className="provider-card--text">
-        <p>Cipher is a full-featured DApps browser for iOS/Android</p>
-        <p>Download it <a href="https://www.cipherbrowser.com/">here</a></p>
-      </section>
+        <img alt="Cipher logo" src="/static/cipher-logo.png" style={{ 'width': '80%' }}/>
+        <section className="provider-card--text">
+          <p>Cipher is a full-featured DApps browser for iOS/Android</p>
+          <p>Download it <a href="https://www.cipherbrowser.com/">here</a></p>
+        </section>
       </Card>
       <Card
         hoverable
@@ -58,11 +58,11 @@ const ProviderDownloadCards = () => (
         title="Install Status"
         className="provider-card"
       >
-      <img alt="Status logo" src="/static/status-logo.png" style={{ 'width': '80%' }}/>
-      <section className="provider-card--text">
-        <p>Status is a full-featured DApps browser, Ethereum wallet and light node for iOS/Android</p>
-        <p>Download it <a href="https://www.status.im/">here</a></p>
-      </section>
+        <img alt="Status logo" src="/static/status-logo.png" style={{ 'width': '80%' }}/>
+        <section className="provider-card--text">
+          <p>Status is a full-featured DApps browser, Ethereum wallet and light node for iOS/Android</p>
+          <p>Download it <a href="https://www.status.im/">here</a></p>
+        </section>
       </Card>
     </Row>
   </div>

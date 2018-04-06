@@ -14,14 +14,14 @@ class PageHeader extends React.Component {
         message: e.message,
         description: 'Are you sure metmask is installed and unlocked ?',
         duration: 0,
-        }));
+      }));
     this.props.dispatch(getNetwork(web3))
       .catch(e => notification.error({
         message: e.message,
         description: 'Are you sure metmask is installed and unlocked ?',
         duration: 0,
-        }));
-    }
+      }));
+  }
   render() {
     return (
       <React.Fragment>
@@ -42,24 +42,24 @@ class PageHeader extends React.Component {
                         </a>
                       </Tag>
                     </span>
-                    }
+                  }
                   </span>
                   <span className="header-userbar--network">{this.props.web3CurrentNetwork &&
                     <Tag color="green" className="header-userbar--network--tag">
                       {this.props.web3CurrentNetwork}
                     </Tag>
-                    }
+                  }
                   </span>
-              </span>
+                </span>
               </Col>
             </Row>
           </div>
         </Header>
         <div className="navbar">
           <Menu
-          selectedKeys={[this.props.selected]}
-          mode="horizontal"
-          className="navbar-menu"
+            selectedKeys={[this.props.selected]}
+            mode="horizontal"
+            className="navbar-menu"
           >
             <Menu.Item key="new">
               <a href="/campaign/new"><Icon type="file-add" />New Campaign</a>

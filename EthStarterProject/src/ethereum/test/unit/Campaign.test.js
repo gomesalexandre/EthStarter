@@ -50,7 +50,7 @@ describe('Campaign factory', () => {
       assert(false);
     } catch(err) {
       assert(err);
-     }
+    }
   });
   it('Manager can make a payment request', async () => {
     await campaign.methods.createRequest('Buy coffee and pizza to feed the devs', '100', accounts[1])

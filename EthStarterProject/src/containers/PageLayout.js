@@ -21,8 +21,8 @@ class PageLayout extends React.Component {
           {this.props.children}
         </Content>
       </Layout>
-  );
-}}
+    );
+  }}
 
 PageLayout.propTypes = {
   children: PropTypes.obj,
