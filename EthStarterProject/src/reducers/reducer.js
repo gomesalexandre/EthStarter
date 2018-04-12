@@ -21,6 +21,12 @@ export const reducer = (state = initialState, action) => {
         value: action.payload.requestValue,
       }))
       .toJS();
+  case "PREPARE_CONTRIBUTION" :
+    return state
+      .set('newContribution', Map({
+        value: action.payload.contributionAmount,
+      }))
+      .toJS();
   case "FETCH_CAMPAIGN_SUMMARY" :
     return state
       .set('campaign', Map({

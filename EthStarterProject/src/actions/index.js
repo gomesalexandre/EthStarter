@@ -9,6 +9,7 @@ import { makeInvisible } from './makeInvisible';
 import { setLoading } from './setLoading';
 import { getCurrentAccount } from './getCurrentAccount';
 import { getNetwork } from './getNetworkAsync';
+import { contribute } from './contributeAsync';
 
 export {
   actionTypes,
@@ -21,4 +22,5 @@ export {
   setLoading,
   getCurrentAccount,
   getNetwork,
+  contribute,
 };

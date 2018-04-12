@@ -1,13 +1,14 @@
 import React from 'react';
-import { getVisibleSelector, getCampaignSelector, getNewRequestSelector, getAccountsSelector } from '../../src/store/selectors';
+import { createSelector } from 'reselect';
+import { getVisibleSelector, getCampaignSelector, getNewRequestSelector, getAccountsSelector, getNewContributionSelector, getLoadingSelector } from '../../src/store/selectors';
 import Router from 'next/router';
 import PropTypes from 'prop-types';
 import web3 from '../../src/ethereum/web3';
 import { Card, Button, Layout, Menu, Form, Input, notification, Icon } from 'antd';
 import { nextConnect } from '../../src/store/initStore';
-import { createRequest, getAccounts, getCampaignSummary, makeVisible, makeInvisible } from '../../src/actions';
+import { createRequest, getAccounts, getCampaignSummary, makeVisible, makeInvisible, contribute } from '../../src/actions';
 import { PageLayout } from '../../src/containers';
-import { RequestModal, BreadCrumb } from '../../src/wrappers';
+import { RequestModal, ContributeModal, BreadCrumb } from '../../src/wrappers';
 
 class Campaign extends React.Component {
   constructor(props) {
@@ -25,6 +26,9 @@ class Campaign extends React.Component {
   }
   showRequestForm() {
     this.props.dispatch(makeVisible('requestCard'));
+  }
+  showContributeForm() {
+    this.props.dispatch(makeVisible('contributeCard'));
   }
   // showContributeForm() {
   //   this.setState({isContributeCardVisible: true, });
@@ -48,6 +52,20 @@ class Campaign extends React.Component {
   hideRequestModal() {
     this.props.dispatch(makeInvisible('requestModal'));
   }
+  showContributeModal() {
+    try {
+      this.props.form.validateFields((err, values) => {
+        this.props.dispatch({
+          type: 'PREPARE_CONTRIBUTION',
+          payload: {
+            contributionAmount: values.contributeAmount,
+          },
+        });
+
+        this.props.dispatch(makeVisible('contributeModal'));
+      });
+    } catch(e) {throw e;}
+  }
   async handleRequestOk() {
     try {
       await this.props.dispatch(createRequest(this.props.campaign.address, this.props.newRequest, this.props.accounts[0]));
@@ -67,21 +85,45 @@ class Campaign extends React.Component {
     }
   }
 
+  async handleContributeOK() {
+    try {
+      await this.props.dispatch(contribute(this.props.campaign.address,this.props.newContribution, this.props.accounts[0]));
+
+      notification.success({
+        message: 'You have contributed to the campaign',
+        description: 'Reload page',
+        icon: <Icon type="check" style={{ color: '#4CAF50' }} />,
+      });
+    } catch(e) {
+      throw e;
+    }
+  }
+
   render(){
     console.log('New state is', this.props);
     const { getFieldDecorator } = this.props.form;
-    const { loading, newRequest } = this.props;
-
+    const { loading, newRequest, newContribution } = this.props;
+    console.log('new contribution', this.props.newContribution);
     return(
       <div className="campaign">
         <PageLayout style={{ height:"100vh" }}>
-          <RequestModal
-            isRequestModalVisible={this.props.visible.requestModal}
-            handleRequestOk={() => this.handleRequestOk()}
-            handleRequestCancel={() => this.hideRequestModal()}
-            loading={loading}
-            newRequest={newRequest}
-          />
+          {this.props.visible.requestModal &&
+            <RequestModal
+              handleRequestOk={() => this.handleRequestOk()}
+              handleRequestCancel={() => this.hideRequestModal()}
+              loading={loading}
+              newRequest={newRequest}
+            />
+          }
+          {this.props.visible.contributeModal &&
+            <ContributeModal
+              handleContributeOk={() => this.handleContributeOK()}
+              loading={loading}
+              newContribution={newContribution}
+              // handleContributeCancel={() => this.handleContributeCancel()}
+              // loading={loading}
+            />
+          }
           <div className="campaign-breadcrumb">
             <BreadCrumb path={[
               { title: 'Campaigns', url: 'http://foo.bar' },
@@ -107,7 +149,21 @@ class Campaign extends React.Component {
               {this.props.campaign.minimumContribution &&
                   <Card title="Campaign">
                     <Button type={this.props.visible.requestCard ? "primary" : "secondary"} icon="file" onClick={() => this.showRequestForm()}>Create new request</Button>
-                    {/* <Button type="secondary" icon="file" onClick={() => this.showContributeForm()}>Contribute</Button> */}
+                    <Button type={this.props.visible.contributeCard ? "primary" : "secondary"} icon="file" onClick={() => this.showContributeForm()}>Contribute</Button>
+                    {
+                      this.props.visible.contributeCard &&
+                        <Card type="inner" title="Contribute to campaign">
+                          <Form layout="inline">
+                            <Form.Item label= "Amount">
+                              {getFieldDecorator('contributeAmount', {
+                                rules: [{ required: true, whitespace: true }],
+                              })(<Input />)
+                              }
+                            </Form.Item>
+                            <Button type="primary" onClick={() => this.showContributeModal()}>Contribute</Button>
+                          </Form>
+                        </Card>
+                    }
                     {this.props.visible.requestCard &&
                       <Card type="inner" title="New request">
                         <Form layout="inline">
@@ -166,5 +222,7 @@ export default nextConnect(state => ({
   visible: getVisibleSelector(state),
   campaign: getCampaignSelector(state),
   newRequest: getNewRequestSelector(state),
+  newContribution: getNewContributionSelector(state),
   accounts: getAccountsSelector(state),
+  loading: getLoadingSelector(state),
 }))(ParsedCampaign);
